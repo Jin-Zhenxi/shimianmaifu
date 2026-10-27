@@ -1,0 +1,489 @@
+{
+  "stage": "keyframe_sketch_review_pending",
+  "source_storyboard": "storyboard.md v3",
+  "source_srt_unchanged": true,
+  "width": 1920,
+  "height": 1080,
+  "character_module": "character.js",
+  "letter_content_present": false,
+  "shots": [
+    {
+      "id": "L01",
+      "start_frame": 0,
+      "end_frame": 194,
+      "number": 1,
+      "filename": "01-L01.png",
+      "caption": "闻说你时常在下午",
+      "sha256": "1a5ff1b7002e9601eed054da74c57524428eb5150cd7d20c00f4bf10b3dc532c"
+    },
+    {
+      "id": "L02",
+      "start_frame": 194,
+      "end_frame": 296,
+      "number": 2,
+      "filename": "02-L02.png",
+      "caption": "来这里寄信件",
+      "sha256": "4ad3a3ea2d1573aaa1d0d2733d9ace0dff12144b69ed2adebb039eb6996e3789"
+    },
+    {
+      "id": "L03",
+      "start_frame": 296,
+      "end_frame": 415,
+      "number": 3,
+      "filename": "03-L03.png",
+      "caption": "逢礼拜留连艺术展",
+      "sha256": "d24b9beea2887b14fb1e13b8855e22a31002096d395f1c425d601ee884397ca4"
+    },
+    {
+      "id": "L04",
+      "start_frame": 415,
+      "end_frame": 507,
+      "number": 4,
+      "filename": "04-L04.png",
+      "caption": "还是未间断",
+      "sha256": "49d7fd3df1f3a4d732d9820c232e0766969be575fe8b20bba223299803afc083"
+    },
+    {
+      "id": "L05",
+      "start_frame": 507,
+      "end_frame": 610,
+      "number": 5,
+      "filename": "05-L05.png",
+      "caption": "何以我来回巡逻",
+      "sha256": "8f85862492d9e3283c481f5b4d57c2e21d21df2eb389c0795dcc8d77a9ae43c8"
+    },
+    {
+      "id": "L06",
+      "start_frame": 610,
+      "end_frame": 716,
+      "number": 6,
+      "filename": "06-L06.png",
+      "caption": "遍仍然和你擦肩",
+      "sha256": "233f44e9cf165084129b8db34347e2357e01b4e6c4424682b6d5ebd6bbcfe06d"
+    },
+    {
+      "id": "L07",
+      "start_frame": 716,
+      "end_frame": 833,
+      "number": 7,
+      "filename": "07-L07.png",
+      "caption": "还仍然在各自宇宙",
+      "sha256": "4232c47d2aa1ca64fff888bb49f8afaead698bf57fd367e7407ac2f15acf4949"
+    },
+    {
+      "id": "L08",
+      "start_frame": 833,
+      "end_frame": 899,
+      "number": 8,
+      "filename": "08-L08.png",
+      "caption": "错过了春天",
+      "sha256": "f54a4f56bb97dd7a99405a597175f817b3c9393beda9d63994d12f9bba1944e6"
+    },
+    {
+      "id": "L09",
+      "start_frame": 899,
+      "end_frame": 1068,
+      "number": 9,
+      "filename": "09-L09.png",
+      "caption": "只差一点点即可以再会面",
+      "sha256": "aad26acfcc1a71ef42f9f43c78ddc6d862188a63a968ec6ac5c2443ee5e1d398"
+    },
+    {
+      "id": "L10",
+      "start_frame": 1068,
+      "end_frame": 1185,
+      "number": 10,
+      "filename": "10-L10.png",
+      "caption": "可惜偏偏刚刚擦过",
+      "sha256": "0bb0d760f770950f878087e14ee174c4f691c0cef93a91d788e24d7686fe1546"
+    },
+    {
+      "id": "L11",
+      "start_frame": 1185,
+      "end_frame": 1250,
+      "number": 11,
+      "filename": "11-L11.png",
+      "caption": "十面埋伏过",
+      "sha256": "150d92f754c9b31b095662d20d1b1e1e40ff5038ef2e8f64e8887982f356623f"
+    },
+    {
+      "id": "L12",
+      "start_frame": 1250,
+      "end_frame": 1328,
+      "number": 12,
+      "filename": "12-L12.png",
+      "caption": "孤单感更赤裸",
+      "sha256": "99ce98ff117788733f6bb16a669c1d826510cd727e3bcdb4d1ad61a920569f7a"
+    },
+    {
+      "id": "L13",
+      "start_frame": 1328,
+      "end_frame": 1498,
+      "number": 13,
+      "filename": "13-L13.png",
+      "caption": "总差一点点先可以再会面",
+      "sha256": "6b2e2316c319f88a119d7f83bce556bc586ecdabafa0a9aa4ff0da1551f8f836"
+    },
+    {
+      "id": "L14",
+      "start_frame": 1498,
+      "end_frame": 1589,
+      "number": 14,
+      "filename": "14-L14.png",
+      "caption": "彷彿应该一早见过",
+      "sha256": "a47d6eb9a453888bd700f1fabdaf50f396ac68be11fdb0b5c7f252de73286e18"
+    },
+    {
+      "id": "L15",
+      "start_frame": 1589,
+      "end_frame": 1668,
+      "number": 15,
+      "filename": "15-L15.png",
+      "caption": "但直行直过",
+      "sha256": "3a71c6ac093e3cd4eba0d8a503c111d718ebb88462eb9fa5320ccf99e26b5aac"
+    },
+    {
+      "id": "L16",
+      "start_frame": 1668,
+      "end_frame": 1811,
+      "number": 16,
+      "filename": "16-L16.png",
+      "caption": "只差一个眼波 将彼此错过",
+      "sha256": "1f717a53586d2d561e75d33144cb0cac99b2e7d40e1235a558249c9f6c427368"
+    },
+    {
+      "id": "I1",
+      "start_frame": 1811,
+      "end_frame": 1955,
+      "number": 17,
+      "filename": "17-I1.png",
+      "caption": "间奏：建立站台位置",
+      "sha256": "286c0189a36d443c2c7d336a418fff1cd158aca659d27e8fef8a0eb58c9d00dc"
+    },
+    {
+      "id": "L17",
+      "start_frame": 1955,
+      "end_frame": 2072,
+      "number": 18,
+      "filename": "18-L17.png",
+      "caption": "迟两秒搭上地下铁",
+      "sha256": "2aef044e892ba6da8eabfb57297fffddaa306e8f01f85d05694f2f5b74ced8d1"
+    },
+    {
+      "id": "L18",
+      "start_frame": 2072,
+      "end_frame": 2176,
+      "number": 19,
+      "filename": "19-L18.png",
+      "caption": "能与你碰上么",
+      "sha256": "59263b54e1298ddf79a0a9f173823a383e017726da9bf193433fbd2c3e15b5ed"
+    },
+    {
+      "id": "L19",
+      "start_frame": 2176,
+      "end_frame": 2294,
+      "number": 20,
+      "filename": "20-L19.png",
+      "caption": "如提前十步入电梯",
+      "sha256": "59894cd03fb6e4f65bebf9cf69809688027e077c00fc9852df96d2f55492ba81"
+    },
+    {
+      "id": "L20",
+      "start_frame": 2294,
+      "end_frame": 2385,
+      "number": 21,
+      "filename": "21-L20.png",
+      "caption": "谁又被错过",
+      "sha256": "7f883226c3628553f89f6c2b521576bf3974baaa9b7b969c687e9c719dde99f8"
+    },
+    {
+      "id": "L21",
+      "start_frame": 2385,
+      "end_frame": 2502,
+      "number": 22,
+      "filename": "22-L21.png",
+      "caption": "和某某从来未预约",
+      "sha256": "15f8b5071452bc1c4363fc8ba9da673d2592613fb3fb5c7090f36e85d1b4b698"
+    },
+    {
+      "id": "L22",
+      "start_frame": 2502,
+      "end_frame": 2607,
+      "number": 23,
+      "filename": "23-L22.png",
+      "caption": "为何能见更多",
+      "sha256": "01f365642f197ff4c2e913ad81b24eadcb24e0dfd8327d5751cd8b58af36fd0b"
+    },
+    {
+      "id": "L23",
+      "start_frame": 2607,
+      "end_frame": 2672,
+      "number": 24,
+      "filename": "24-L23.png",
+      "caption": "全城来撞你",
+      "sha256": "395e3a578c4d5b2dcda92337c66e7b31b541315a431a888a45f80dce0c8a4052"
+    },
+    {
+      "id": "L23-A",
+      "start_frame": 2607,
+      "end_frame": 2672,
+      "number": "24a",
+      "filename": "24a-L23-A.png",
+      "caption": "全城寻找·过程A：邮局街区",
+      "supplemental": true,
+      "same_shot_as": "L23",
+      "sha256": "4a129a0da1de99b53435f5fe3d45506a4d393d4fa3643c1d97d5be7b09eaef5e"
+    },
+    {
+      "id": "L23-B",
+      "start_frame": 2607,
+      "end_frame": 2672,
+      "number": "24b",
+      "filename": "24b-L23-B.png",
+      "caption": "全城寻找·过程B：站口折返",
+      "supplemental": true,
+      "same_shot_as": "L23",
+      "sha256": "8128113a57ec0d72d609ab7c02c0949dd6cceda1f4943a4cf60727f937ca2153"
+    },
+    {
+      "id": "L23-C",
+      "start_frame": 2607,
+      "end_frame": 2672,
+      "number": "24c",
+      "filename": "24c-L23-C.png",
+      "caption": "全城寻找·过程C：另一街区继续找",
+      "supplemental": true,
+      "same_shot_as": "L23",
+      "sha256": "1cdf3e88aa0bbff2e4fe39de7987c90765f07612e8ed631ca9cbd8147c767d94"
+    },
+    {
+      "id": "L24",
+      "start_frame": 2672,
+      "end_frame": 2802,
+      "number": 25,
+      "filename": "25-L24.png",
+      "caption": "但最后处处有险阻",
+      "sha256": "41b5b5c0d141cee798191a7cbdb9b2f596494ebd6cf0c107299e5e92f9ae81cb"
+    },
+    {
+      "id": "L25",
+      "start_frame": 2802,
+      "end_frame": 2959,
+      "number": 26,
+      "filename": "26-L25.png",
+      "caption": "只差一点点即可以再会面",
+      "sha256": "60c0a0f7cbbf05539beb75b913023f0db40e004f9d3c911f7e8f33ec905ff9da"
+    },
+    {
+      "id": "L26",
+      "start_frame": 2959,
+      "end_frame": 3064,
+      "number": 27,
+      "filename": "27-L26.png",
+      "caption": "可惜偏偏刚刚擦过",
+      "sha256": "296df28f138b3a06a3c04f6946dd71f8b735f7ffb85a385e23c23b04d0d1216b"
+    },
+    {
+      "id": "L27",
+      "start_frame": 3064,
+      "end_frame": 3128,
+      "number": 28,
+      "filename": "28-L27.png",
+      "caption": "十面埋伏过",
+      "sha256": "2ed4833e23c90ee2c8a89e346c1965ea6c18ab9fb16d3396834eaa51c84befff"
+    },
+    {
+      "id": "L28",
+      "start_frame": 3128,
+      "end_frame": 3206,
+      "number": 29,
+      "filename": "29-L28.png",
+      "caption": "孤单感更赤裸",
+      "sha256": "2407a45d8ee678932232102a5826c6189853d31875436e6ea15cebc4f1e69b42"
+    },
+    {
+      "id": "L29",
+      "start_frame": 3206,
+      "end_frame": 3376,
+      "number": 30,
+      "filename": "30-L29.png",
+      "caption": "总差一点点先可以再会面",
+      "sha256": "e2cedb6d360bff59eea719d1ff7d778df90f90da5b11e64058ade5ec910e18eb"
+    },
+    {
+      "id": "L30",
+      "start_frame": 3376,
+      "end_frame": 3468,
+      "number": 31,
+      "filename": "31-L30.png",
+      "caption": "彷彿应该一早见过",
+      "sha256": "04e8a312be751b463def90f5994c1750f6f4ff0ff8ece6880e1c39f5e0cb1534"
+    },
+    {
+      "id": "L31",
+      "start_frame": 3468,
+      "end_frame": 3533,
+      "number": 32,
+      "filename": "32-L31.png",
+      "caption": "但直行直过",
+      "sha256": "32d8d911bbca60ab2f988194ea5afc7a4ece44cd1b6b68032dd997e8d7355491"
+    },
+    {
+      "id": "L32",
+      "start_frame": 3533,
+      "end_frame": 3624,
+      "number": 33,
+      "filename": "33-L32.png",
+      "caption": "只等一个眼波",
+      "sha256": "7b5284b2a425545e61840a49c3520774f8005490155adeb3ef4c41007010ea16"
+    },
+    {
+      "id": "L33",
+      "start_frame": 3624,
+      "end_frame": 3716,
+      "number": 34,
+      "filename": "34-L33.png",
+      "caption": "轨迹改变角度交错",
+      "sha256": "85d877fb4533c4129fe3a153f4c06b5b887a0588f03c49150c33e4c2f4a2cdcd"
+    },
+    {
+      "id": "L34",
+      "start_frame": 3716,
+      "end_frame": 3833,
+      "number": 35,
+      "filename": "35-L34.png",
+      "caption": "寂寞城市又再探戈",
+      "sha256": "6d2f8345d96e09f860c3a4eacd70f608f9e3440dbbc041610ba5b13d9f856dfb"
+    },
+    {
+      "id": "L35",
+      "start_frame": 3833,
+      "end_frame": 3950,
+      "number": 36,
+      "filename": "36-L35.png",
+      "caption": "天空闪过灿烂花火",
+      "sha256": "0b917d8254a4925d4073888ff292440242b43abad1d76231516bfbd6cea4e61f"
+    },
+    {
+      "id": "L36",
+      "start_frame": 3950,
+      "end_frame": 4028,
+      "number": 37,
+      "filename": "37-L36.png",
+      "caption": "和你不再为爱奔波",
+      "sha256": "9f0d50957e79030e6488da4b3bcfc267ea85b73e67e5c2625633a2893e33278e"
+    },
+    {
+      "id": "L37",
+      "start_frame": 4028,
+      "end_frame": 4198,
+      "number": 38,
+      "filename": "38-L37.png",
+      "caption": "总差一点点先可以再会面",
+      "sha256": "c1b2648607507c4d57d824df3e5ba26d5aa52b607846261f27d65604edd9aa4f"
+    },
+    {
+      "id": "L38",
+      "start_frame": 4198,
+      "end_frame": 4315,
+      "number": 39,
+      "filename": "39-L38.png",
+      "caption": "悔不当初轻轻放过",
+      "sha256": "555bc34cbde16099fe74e2a41ee32913ec5ee411023d377c5968ea8440befb2a"
+    },
+    {
+      "id": "L39",
+      "start_frame": 4315,
+      "end_frame": 4459,
+      "number": 40,
+      "filename": "40-L39.png",
+      "caption": "现在惩罚我 分手分错了么",
+      "sha256": "cab1c875c31cdf243faf21a31071376fcdee35e1c2e0e2f8e4cf8848c3c93c41"
+    },
+    {
+      "id": "L40",
+      "start_frame": 4459,
+      "end_frame": 4628,
+      "number": 41,
+      "filename": "41-L40.png",
+      "caption": "分开一千天 天天盼再会面",
+      "sha256": "c6853ed4338355f899be668fe27e460b3f4f074828ac661d3efe3598de8ddd8d"
+    },
+    {
+      "id": "L41",
+      "start_frame": 4628,
+      "end_frame": 4733,
+      "number": 42,
+      "filename": "42-L41.png",
+      "caption": "只怕使你先找到我",
+      "sha256": "92712938bb4aedae1aa5b5961943905696df41a19131e1e074fb25f61d2131f4"
+    },
+    {
+      "id": "L42",
+      "start_frame": 4733,
+      "end_frame": 4798,
+      "number": 43,
+      "filename": "43-L42.png",
+      "caption": "但直行直过",
+      "sha256": "aaf44e96b5526776b25cabd0d7b7b72010a09032f6f60908a0b49bfff13f5005"
+    },
+    {
+      "id": "L43",
+      "start_frame": 4798,
+      "end_frame": 4942,
+      "number": 44,
+      "filename": "44-L43.png",
+      "caption": "天都帮你去躲 躲开不见我",
+      "sha256": "b7f91f6268b75a759ce65de37dfa271bd0f64b28daa25db4f55a25ed45a707c8"
+    },
+    {
+      "id": "E1",
+      "start_frame": 4942,
+      "end_frame": 5085,
+      "number": 45,
+      "filename": "45-E1.png",
+      "caption": "错过后收回钳子",
+      "sha256": "14a452b057e412944bfa899e31bdb02d1b7b6334066ce194bcc60a43c84f9c34"
+    },
+    {
+      "id": "E2",
+      "start_frame": 5085,
+      "end_frame": 5346,
+      "number": 46,
+      "filename": "46-E2.png",
+      "caption": "夜色分岔路：背道而驰",
+      "sha256": "6a825dc1033f7756c37093c8a6844a0759c3119ae049e49a921dae4de6f1d7fa"
+    },
+    {
+      "id": "E3",
+      "start_frame": 5346,
+      "end_frame": 5659,
+      "number": 47,
+      "filename": "47-E3.png",
+      "caption": "各自走远，距离继续拉开",
+      "sha256": "4bef47ce04e16e08b4cc14da2763685f72b960d066ad463bb72d310248df55a4"
+    },
+    {
+      "id": "E4",
+      "start_frame": 5659,
+      "end_frame": 6964,
+      "number": 48,
+      "filename": "48-E4.png",
+      "caption": "信纸展开，正文暂空",
+      "sha256": "88c696aef85760610a4ff612f99558ce0c7723b66978f02e23548038692377e5"
+    },
+    {
+      "id": "E5",
+      "start_frame": 6964,
+      "end_frame": null,
+      "number": 49,
+      "filename": "49-E5.png",
+      "caption": "曲终继续显字，全文后停留30秒",
+      "sha256": "88c696aef85760610a4ff612f99558ce0c7723b66978f02e23548038692377e5"
+    }
+  ],
+  "total_images": 52,
+  "main_keyframes": 49,
+  "supplemental_keyframes": 3,
+  "final_video_duration_locked": false
+}

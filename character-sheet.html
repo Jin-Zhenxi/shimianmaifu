@@ -1,0 +1,52 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>Character sheet</title>
+<style>html,body{margin:0;width:3200px;height:2400px;overflow:hidden;background:#f2e9d5}canvas{display:block}</style>
+</head><body><canvas id="sheet" width="3200" height="2400"></canvas><script src="character.js"></script><script>
+'use strict';
+const canvas=document.querySelector('#sheet'),g=canvas.getContext('2d'),W=3200,H=2400;
+const c={paper:'#f4ecda',ink:'#48554a',muted:'#8b8975',line:'#d8c8a8',card:'#fbf6e9',accent:'#bd6e4b',green:'#5e7c6c'};
+const font='"Microsoft YaHei","Noto Sans CJK SC",sans-serif';
+function text(s,x,y,size=30,color=c.ink,align='left',weight=400){g.save();g.fillStyle=color;g.font=`${weight} ${size}px ${font}`;g.textAlign=align;g.fillText(s,x,y);g.restore()}
+function rule(x,y,w,color=c.line){g.strokeStyle=color;g.lineWidth=2;g.beginPath();g.moveTo(x,y);g.lineTo(x+w,y);g.stroke()}
+function card(x,y,w,h){g.save();g.shadowColor='rgba(105,80,43,.10)';g.shadowBlur=15;g.shadowOffsetY=6;g.fillStyle=c.card;g.beginPath();g.roundRect(x,y,w,h,12);g.fill();g.restore()}
+function baseline(x,y,w){g.save();g.strokeStyle='#e2d5ba';g.setLineDash([6,8]);g.lineWidth=1.5;g.beginPath();g.moveTo(x-w/2,y);g.lineTo(x+w/2,y);g.stroke();g.restore()}
+function render(){
+ g.fillStyle=c.paper;g.fillRect(0,0,W,H);
+ let state=93175;function rand(){state=(Math.imul(state,1664525)+1013904223)>>>0;return state/4294967296}
+ g.fillStyle='rgba(136,105,65,.035)';for(let i=0;i<45000;i++)g.fillRect(rand()*W,rand()*H,1+rand(),1);
+ text('十面埋伏  /  纸艺角色设定',104,113,62,c.ink,'left',600);
+ text('CLAUDE / CLAWD 灵感转译  ·  剪纸白边 / 纸偶关节 / 万圣节小配饰',108,173,27,c.muted);
+ text('CHARACTER STUDY  01',3090,105,25,c.green,'right',500);
+ text('待确认 · 尚未进入分镜制作',3090,161,25,c.muted,'right');
+ rule(105,205,2990);
+ const roles=[{variant:'male',x:100,name:'01  男主 · 橘色小螃蟹',desc:'陶土橘 / 简洁黑眼睛 / 小南瓜徽章'},
+ {variant:'female',x:1120,name:'02  女主 · 金色小螃蟹',desc:'柔和金色 / 粉色蝴蝶结 / 可拆迷你巫帽'},
+ {variant:'extra',x:2140,name:'03  路人 · 灰色小螃蟹',desc:'暖灰纸片 / 统一轮廓 / 小幽灵徽章'}];
+ const draw=(variant,x,y,size,more={})=>Character.draw(g,{variant,id:variant,x,y,size,t:0,paperJitter:false,...more});
+ for(const role of roles){const {x,variant}=role;card(x,238,960,1280);text(role.name,x+46,311,40,c.ink,'left',600);text(role.desc,x+46,362,24,c.muted);rule(x+46,390,868);
+  baseline(x+480,736,600);draw(variant,x+480,730,280,{expression:'neutral'});text('正面',x+480,790,27,c.muted,'center');
+  draw(variant,x+270,1063,172,{facing:'right'});draw(variant,x+700,1063,172,{facing:'back'});
+  text('侧面',x+270,1116,26,c.muted,'center');text('背面',x+700,1116,26,c.muted,'center');
+  rule(x+46,1165,868);text('表情',x+48,1210,23,c.muted);
+  [['happy','开心'],['shy','害羞'],['sad','难过']].forEach(([expression,label],i)=>{draw(variant,x+175+i*305,1415,128,{expression});text(label,x+175+i*305,1472,25,c.muted,'center')});
+ }
+ text('动作与持物关系',106,1622,42,c.ink,'left',600);text('同一个 character.js 模块直接绘制所有示例；手部与道具共用锚点。',3090,1622,25,c.muted,'right');
+ const tiles=[{x:100,label:'走  /  WALK',desc:'四只短脚交替 · 身体轻微起伏'},
+ {x:860,label:'跳  /  JUMP',desc:'蓄力、腾空、落地 · 纸片不拉伸'},
+ {x:1620,label:'拥抱  /  HUG',desc:'成对靠近 · 钳臂向内包合'},
+ {x:2380,label:'手持道具  /  HOLD',desc:'信封夹在钳端 · 保持面部无遮挡'}];
+ for(const a of tiles){card(a.x,1670,720,490);text(a.label,a.x+40,1734,29,c.ink,'left',600);text(a.desc,a.x+40,1780,22,c.muted)}
+ draw('male',460,2070,225,{action:'walk',u:.2,t:.2,expression:'happy'});
+ draw('female',1220,2088,212,{action:'jump',u:.5,t:.5,expression:'happy'});
+ // Partners approach closely enough for real arm contact. Both still use the module.
+ draw('male',1853,2070,185,{action:'hug',hugSide:'right',expression:'shy'});
+ draw('female',2086,2070,185,{action:'hug',hugSide:'left',expression:'happy'});
+ draw('male',2740,2070,225,{action:'hold',expression:'shy',hold:{type:'letter',hand:'left'}});
+ rule(105,2222,2990);
+ text('造型锁定后，所有镜头统一调用 Character.draw(ctx, options)。',108,2280,29,c.ink,'left',500);
+ text('男主橘色 · 女主金色＋粉色蝴蝶结 · 路人暖灰色；配饰可开关。',108,2331,25,c.muted);
+ const swatches=['#d78050','#dcba65','#d68c9c','#a7aaa0','#685e4a','#fff9e9','#5e7c6c'];
+ swatches.forEach((hex,i)=>{g.fillStyle=hex;g.beginPath();g.roundRect(2530+i*80,2260,58,58,5);g.fill();g.strokeStyle='#d4c5aa';g.lineWidth=1;g.stroke()});
+ document.body.dataset.ready='true';document.title='READY character-sheet';
+}
+render();window.sceneReady=true;window.renderAt=()=>canvas.toDataURL('image/png');
+</script></body></html>

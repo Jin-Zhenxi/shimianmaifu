@@ -1,0 +1,8 @@
+# Initial audio analysis toolchain; resolved versions are recorded after installation.
+openai-whisper
+librosa>=0.11,<0.12
+soundfile>=0.13,<0.14
+numpy>=1.26,<3
+scipy>=1.11,<2
+matplotlib>=3.8,<4
+Pillow>=10,<13

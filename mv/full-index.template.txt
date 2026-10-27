@@ -1,0 +1,14 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>十面埋伏 · 纸艺螃蟹MV · r1</title>
+<style>@font-face{font-family:LetterSans;src:url('assets/msyh.ttc')}*{margin:0;padding:0;box-sizing:border-box}html,body,#root{width:1920px;height:1080px;overflow:hidden;background:#344d56}#root{position:relative}#scene{position:absolute;inset:0;width:1920px;height:1080px}</style>
+<script src="assets/gsap.min.js"></script><script src="assets/character.js"></script><script src="assets/paper.js"></script><script src="assets/scenes.js"></script><script src="assets/revisions.js"></script><script src="assets/full-data.js"></script><script src="actor-tracks.js"></script><script src="full-engine.js"></script></head>
+<body><div id="root" data-composition-id="main" data-start="0" data-duration="310.3" data-width="1920" data-height="1080" data-fps="30">
+<canvas id="scene" width="1920" height="1080" data-layout-allow-overflow="true"></canvas>
+<audio id="song" class="clip" src="assets/song.flac" data-start="0" data-duration="232.133492" data-media-start="0" data-track-index="10" data-volume="1"></audio></div>
+<script>
+const g=document.querySelector('canvas').getContext('2d');let tl;
+window.renderAt=t=>{FullMV.draw(g,t);return document.querySelector('canvas').toDataURL('image/png')};
+window.addEventListener('hf-seek',e=>FullMV.draw(g,e.detail.time));
+window.sceneReady=document.fonts.load('36px LetterSans').then(()=>document.fonts.load('60px LetterSans')).then(()=>{
+ const proxy={t:0};tl=gsap.timeline({paused:true});tl.to(proxy,{t:310.3,duration:310.3,ease:'none',onUpdate:()=>FullMV.draw(g,proxy.t)},0);window.__timelines={main:tl};FullMV.draw(g,0);return true;
+});
+</script></body></html>

@@ -1,0 +1,596 @@
+{
+  "model": "small",
+  "device": "cpu",
+  "status": "machine_aligned_not_ear_checked",
+  "script_modified": false,
+  "subtitle_file": "lyrics.draft.srt",
+  "all_lines_aligned_without_overlap": false,
+  "lines": [
+    {
+      "script_line": 1,
+      "text_from_script": "闻说你时常在下午",
+      "mapped_fraction": 0.0,
+      "exact_match_fraction": 0.0,
+      "ear_checked": false,
+      "review_flags": [
+        "未对齐，不生成猜测时间"
+      ]
+    },
+    {
+      "script_line": 2,
+      "text_from_script": "来这里寄信件",
+      "mapped_fraction": 0.0,
+      "exact_match_fraction": 0.0,
+      "ear_checked": false,
+      "review_flags": [
+        "未对齐，不生成猜测时间"
+      ]
+    },
+    {
+      "script_line": 3,
+      "text_from_script": "逢礼拜留连艺术展",
+      "mapped_fraction": 0.0,
+      "exact_match_fraction": 0.0,
+      "ear_checked": false,
+      "review_flags": [
+        "未对齐，不生成猜测时间"
+      ]
+    },
+    {
+      "script_line": 4,
+      "text_from_script": "还是未间断",
+      "mapped_fraction": 0.0,
+      "exact_match_fraction": 0.0,
+      "ear_checked": false,
+      "review_flags": [
+        "未对齐，不生成猜测时间"
+      ]
+    },
+    {
+      "script_line": 5,
+      "text_from_script": "何以我来回巡逻",
+      "mapped_fraction": 0.0,
+      "exact_match_fraction": 0.0,
+      "ear_checked": false,
+      "review_flags": [
+        "未对齐，不生成猜测时间"
+      ]
+    },
+    {
+      "script_line": 6,
+      "text_from_script": "遍仍然和你擦肩",
+      "mapped_fraction": 0.0,
+      "exact_match_fraction": 0.0,
+      "ear_checked": false,
+      "review_flags": [
+        "未对齐，不生成猜测时间"
+      ]
+    },
+    {
+      "script_line": 7,
+      "text_from_script": "还仍然在各自宇宙",
+      "mapped_fraction": 0.0,
+      "exact_match_fraction": 0.0,
+      "ear_checked": false,
+      "review_flags": [
+        "未对齐，不生成猜测时间"
+      ]
+    },
+    {
+      "script_line": 8,
+      "text_from_script": "错过了春天",
+      "mapped_fraction": 0.0,
+      "exact_match_fraction": 0.0,
+      "ear_checked": false,
+      "review_flags": [
+        "未对齐，不生成猜测时间"
+      ]
+    },
+    {
+      "script_line": 9,
+      "text_from_script": "只差一点点即可以再会面",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 1.0,
+      "ear_checked": false,
+      "start": 30.0,
+      "end": 35.48,
+      "min_word_probability": 0.03344851732254028,
+      "whisper_correspondence": "只差一点点即可以再会面",
+      "review_flags": [
+        "至少一个词概率低于0.5；仅作筛查，并非准确率"
+      ]
+    },
+    {
+      "script_line": 10,
+      "text_from_script": "可惜偏偏刚刚擦过",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 1.0,
+      "ear_checked": false,
+      "start": 35.48,
+      "end": 39.14,
+      "min_word_probability": 0.14222344756126404,
+      "whisper_correspondence": "可惜偏偏刚刚擦过",
+      "review_flags": [
+        "至少一个词概率低于0.5；仅作筛查，并非准确率"
+      ]
+    },
+    {
+      "script_line": 11,
+      "text_from_script": "十面埋伏过",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 1.0,
+      "ear_checked": false,
+      "start": 39.32,
+      "end": 41.46,
+      "min_word_probability": 0.04923660308122635,
+      "whisper_correspondence": "十面埋伏过",
+      "review_flags": [
+        "至少一个词概率低于0.5；仅作筛查，并非准确率"
+      ]
+    },
+    {
+      "script_line": 12,
+      "text_from_script": "孤单感更赤裸",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 1.0,
+      "ear_checked": false,
+      "start": 41.7,
+      "end": 43.86,
+      "min_word_probability": 0.03854398801922798,
+      "whisper_correspondence": "孤单感更赤裸",
+      "review_flags": [
+        "至少一个词概率低于0.5；仅作筛查，并非准确率"
+      ]
+    },
+    {
+      "script_line": 13,
+      "text_from_script": "总差一点点先可以再会面",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 1.0,
+      "ear_checked": false,
+      "start": 44.18,
+      "end": 49.36,
+      "min_word_probability": 0.1182408481836319,
+      "whisper_correspondence": "总差一点点先可以再会面",
+      "review_flags": [
+        "至少一个词概率低于0.5；仅作筛查，并非准确率"
+      ]
+    },
+    {
+      "script_line": 14,
+      "text_from_script": "彷彿应该一早见过",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 1.0,
+      "ear_checked": false,
+      "start": 49.8,
+      "end": 53.06,
+      "min_word_probability": 0.5034122164361179,
+      "whisper_correspondence": "彷彿应该一早见过",
+      "review_flags": []
+    },
+    {
+      "script_line": 15,
+      "text_from_script": "但直行直过",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 1.0,
+      "ear_checked": false,
+      "start": 53.4,
+      "end": 55.34,
+      "min_word_probability": 0.14041969180107117,
+      "whisper_correspondence": "但直行直过",
+      "review_flags": [
+        "至少一个词概率低于0.5；仅作筛查，并非准确率"
+      ]
+    },
+    {
+      "script_line": 16,
+      "text_from_script": "只差一个眼波 将彼此错过",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 1.0,
+      "ear_checked": false,
+      "start": 55.56,
+      "end": 59.98,
+      "min_word_probability": 0.07202312350273132,
+      "whisper_correspondence": "只差一个眼波将彼此错过",
+      "review_flags": [
+        "至少一个词概率低于0.5；仅作筛查，并非准确率"
+      ]
+    },
+    {
+      "script_line": 17,
+      "text_from_script": "迟两秒搭上地下铁",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 1.0,
+      "ear_checked": false,
+      "start": 65.36000000000001,
+      "end": 69.02,
+      "min_word_probability": 0.23472900688648224,
+      "whisper_correspondence": "迟两秒搭上地下铁",
+      "review_flags": [
+        "至少一个词概率低于0.5；仅作筛查，并非准确率"
+      ]
+    },
+    {
+      "script_line": 18,
+      "text_from_script": "能与你碰上么",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 1.0,
+      "ear_checked": false,
+      "start": 69.18,
+      "end": 72.0,
+      "min_word_probability": 0.0002691104309633374,
+      "whisper_correspondence": "能与你碰上么",
+      "review_flags": [
+        "至少一个词概率低于0.5；仅作筛查，并非准确率"
+      ]
+    },
+    {
+      "script_line": 19,
+      "text_from_script": "如提前十步入电梯",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 1.0,
+      "ear_checked": false,
+      "start": 72.5,
+      "end": 75.92,
+      "min_word_probability": 0.007470778189599514,
+      "whisper_correspondence": "如提前十步入电梯",
+      "review_flags": [
+        "至少一个词概率低于0.5；仅作筛查，并非准确率"
+      ]
+    },
+    {
+      "script_line": 20,
+      "text_from_script": "谁又被错过",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 1.0,
+      "ear_checked": false,
+      "start": 76.4,
+      "end": 78.68,
+      "min_word_probability": 0.7051401138305664,
+      "whisper_correspondence": "谁又被错过",
+      "review_flags": []
+    },
+    {
+      "script_line": 21,
+      "text_from_script": "和某某从来未预约",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 1.0,
+      "ear_checked": false,
+      "start": 79.68,
+      "end": 82.9,
+      "min_word_probability": 0.09003816545009613,
+      "whisper_correspondence": "和某某从来未预约",
+      "review_flags": [
+        "至少一个词概率低于0.5；仅作筛查，并非准确率"
+      ]
+    },
+    {
+      "script_line": 22,
+      "text_from_script": "为何能见更多",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 1.0,
+      "ear_checked": false,
+      "start": 83.4,
+      "end": 85.68,
+      "min_word_probability": 0.8982082009315491,
+      "whisper_correspondence": "为何能见更多",
+      "review_flags": []
+    },
+    {
+      "script_line": 23,
+      "text_from_script": "全城来撞你",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 0.6,
+      "ear_checked": false,
+      "start": 86.64,
+      "end": 88.68,
+      "min_word_probability": 0.6102983877062798,
+      "whisper_correspondence": "传承来撞你",
+      "review_flags": [
+        "歌词与识别文本匹配不足，需核对时间轴"
+      ]
+    },
+    {
+      "script_line": 24,
+      "text_from_script": "但最后处处有险阻",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 0.875,
+      "ear_checked": false,
+      "start": 89.04,
+      "end": 92.52,
+      "min_word_probability": 0.26944658160209656,
+      "whisper_correspondence": "但最后未来将你遇到并不知为何能见更多传承来撞你但最后未来将你遇到并不知为何能见更多传承来撞你传承来撞你传承来撞你传承来撞你传承来撞你传承来撞你传承来处处有险在",
+      "review_flags": [
+        "至少一个词概率低于0.5；仅作筛查，并非准确率",
+        "段no_speech_prob高于0.6"
+      ]
+    },
+    {
+      "script_line": 25,
+      "text_from_script": "只差一点点即可以再会面",
+      "mapped_fraction": 0.9090909090909091,
+      "exact_match_fraction": 0.9090909090909091,
+      "ear_checked": false,
+      "start": 92.74,
+      "end": 98.16,
+      "min_word_probability": 0.21321800351142883,
+      "whisper_correspondence": "只差一点点即可再会面",
+      "review_flags": [
+        "至少一个词概率低于0.5；仅作筛查，并非准确率",
+        "段no_speech_prob高于0.6"
+      ]
+    },
+    {
+      "script_line": 26,
+      "text_from_script": "可惜偏偏刚刚擦过",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 0.25,
+      "ear_checked": false,
+      "start": 98.52,
+      "end": 101.64,
+      "min_word_probability": 0.18664392828941345,
+      "whisper_correspondence": "可惜片片当钢七个",
+      "review_flags": [
+        "歌词与识别文本匹配不足，需核对时间轴",
+        "至少一个词概率低于0.5；仅作筛查，并非准确率",
+        "段no_speech_prob高于0.6"
+      ]
+    },
+    {
+      "script_line": 27,
+      "text_from_script": "十面埋伏过",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 0.8,
+      "ear_checked": false,
+      "start": 102.1,
+      "end": 104.06,
+      "min_word_probability": 0.3278953731060028,
+      "whisper_correspondence": "索面埋伏过",
+      "review_flags": [
+        "至少一个词概率低于0.5；仅作筛查，并非准确率",
+        "段no_speech_prob高于0.6"
+      ]
+    },
+    {
+      "script_line": 28,
+      "text_from_script": "孤单感更赤裸",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 0.8333333333333334,
+      "ear_checked": false,
+      "start": 104.28,
+      "end": 106.4,
+      "min_word_probability": 0.15802133083343506,
+      "whisper_correspondence": "孤单敢更赤裸",
+      "review_flags": [
+        "至少一个词概率低于0.5；仅作筛查，并非准确率",
+        "段no_speech_prob高于0.6"
+      ]
+    },
+    {
+      "script_line": 29,
+      "text_from_script": "总差一点点先可以再会面",
+      "mapped_fraction": 0.9090909090909091,
+      "exact_match_fraction": 0.7272727272727273,
+      "ear_checked": false,
+      "start": 106.78,
+      "end": 112.02,
+      "min_word_probability": 0.31298333406448364,
+      "whisper_correspondence": "重差一点点才可再会面",
+      "review_flags": [
+        "至少一个词概率低于0.5；仅作筛查，并非准确率",
+        "段no_speech_prob高于0.6"
+      ]
+    },
+    {
+      "script_line": 30,
+      "text_from_script": "彷彿应该一早见过",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 0.625,
+      "ear_checked": false,
+      "start": 112.44,
+      "end": 115.58,
+      "min_word_probability": 0.23736687004566193,
+      "whisper_correspondence": "仿佛应该也早见过",
+      "review_flags": [
+        "歌词与识别文本匹配不足，需核对时间轴",
+        "至少一个词概率低于0.5；仅作筛查，并非准确率",
+        "段no_speech_prob高于0.6"
+      ]
+    },
+    {
+      "script_line": 31,
+      "text_from_script": "但直行直过",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 0.6,
+      "ear_checked": false,
+      "start": 115.98,
+      "end": 117.92,
+      "min_word_probability": 0.24850131571292877,
+      "whisper_correspondence": "但即行即过",
+      "review_flags": [
+        "歌词与识别文本匹配不足，需核对时间轴",
+        "至少一个词概率低于0.5；仅作筛查，并非准确率",
+        "段no_speech_prob高于0.6"
+      ]
+    },
+    {
+      "script_line": 32,
+      "text_from_script": "只等一个眼波",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 0.6666666666666666,
+      "ear_checked": false,
+      "start": 118.14,
+      "end": 120.96,
+      "min_word_probability": 0.0910521000623703,
+      "whisper_correspondence": "只等一个人鬼",
+      "review_flags": [
+        "至少一个词概率低于0.5；仅作筛查，并非准确率",
+        "段no_speech_prob高于0.6"
+      ]
+    },
+    {
+      "script_line": 33,
+      "text_from_script": "轨迹改变角度交错",
+      "mapped_fraction": 0.875,
+      "exact_match_fraction": 0.25,
+      "ear_checked": false,
+      "start": 120.96,
+      "end": 123.72,
+      "min_word_probability": 0.059808943420648575,
+      "whisper_correspondence": "祭改变告到狡猪",
+      "review_flags": [
+        "歌词与识别文本匹配不足，需核对时间轴",
+        "至少一个词概率低于0.5；仅作筛查，并非准确率",
+        "段no_speech_prob高于0.6"
+      ]
+    },
+    {
+      "script_line": 34,
+      "text_from_script": "寂寞城市又再探戈",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 0.125,
+      "ear_checked": false,
+      "start": 123.9,
+      "end": 127.32,
+      "min_word_probability": 0.02627931348979473,
+      "whisper_correspondence": "切割四世幼在探过",
+      "review_flags": [
+        "歌词与识别文本匹配不足，需核对时间轴",
+        "至少一个词概率低于0.5；仅作筛查，并非准确率",
+        "段no_speech_prob高于0.6"
+      ]
+    },
+    {
+      "script_line": 35,
+      "text_from_script": "天空闪过灿烂花火",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 0.5,
+      "ear_checked": false,
+      "start": 127.78,
+      "end": 131.22,
+      "min_word_probability": 0.0713050588965416,
+      "whisper_correspondence": "天空闪过陈良包裹",
+      "review_flags": [
+        "歌词与识别文本匹配不足，需核对时间轴",
+        "至少一个词概率低于0.5；仅作筛查，并非准确率",
+        "段no_speech_prob高于0.6"
+      ]
+    },
+    {
+      "script_line": 36,
+      "text_from_script": "和你不再为爱奔波",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 0.75,
+      "ear_checked": false,
+      "start": 131.56,
+      "end": 134.26,
+      "min_word_probability": 0.46979254484176636,
+      "whisper_correspondence": "和你不再为爱分过",
+      "review_flags": [
+        "至少一个词概率低于0.5；仅作筛查，并非准确率",
+        "段no_speech_prob高于0.6"
+      ]
+    },
+    {
+      "script_line": 37,
+      "text_from_script": "总差一点点先可以再会面",
+      "mapped_fraction": 0.9090909090909091,
+      "exact_match_fraction": 0.7272727272727273,
+      "ear_checked": false,
+      "start": 134.6,
+      "end": 139.74,
+      "min_word_probability": 0.02870120108127594,
+      "whisper_correspondence": "重差一点点才可再会面",
+      "review_flags": [
+        "至少一个词概率低于0.5；仅作筛查，并非准确率",
+        "段no_speech_prob高于0.6"
+      ]
+    },
+    {
+      "script_line": 38,
+      "text_from_script": "悔不当初轻轻放过",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 0.375,
+      "ear_checked": false,
+      "start": 140.32,
+      "end": 143.38,
+      "min_word_probability": 0.09863030165433884,
+      "whisper_correspondence": "会不得再兴兴放过",
+      "review_flags": [
+        "歌词与识别文本匹配不足，需核对时间轴",
+        "至少一个词概率低于0.5；仅作筛查，并非准确率",
+        "段no_speech_prob高于0.6"
+      ]
+    },
+    {
+      "script_line": 39,
+      "text_from_script": "现在惩罚我 分手分错了么",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 0.7272727272727273,
+      "ear_checked": false,
+      "start": 143.76,
+      "end": 148.22,
+      "min_word_probability": 0.08438313007354736,
+      "whisper_correspondence": "现在成分我分手分错了我",
+      "review_flags": [
+        "至少一个词概率低于0.5；仅作筛查，并非准确率",
+        "段no_speech_prob高于0.6"
+      ]
+    },
+    {
+      "script_line": 40,
+      "text_from_script": "分开一千天 天天盼再会面",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 0.7272727272727273,
+      "ear_checked": false,
+      "start": 148.22,
+      "end": 153.8,
+      "min_word_probability": 0.0008273556595668197,
+      "whisper_correspondence": "两开一千天天天堪在会面",
+      "review_flags": [
+        "至少一个词概率低于0.5；仅作筛查，并非准确率"
+      ]
+    },
+    {
+      "script_line": 41,
+      "text_from_script": "只怕使你先找到我",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 0.875,
+      "ear_checked": false,
+      "start": 154.0,
+      "end": 157.42,
+      "min_word_probability": 0.7453640699386597,
+      "whisper_correspondence": "只怕是你先找到我",
+      "review_flags": []
+    },
+    {
+      "script_line": 42,
+      "text_from_script": "但直行直过",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 0.6,
+      "ear_checked": false,
+      "start": 157.66,
+      "end": 159.68,
+      "min_word_probability": 0.03724944218993187,
+      "whisper_correspondence": "但即行即过",
+      "review_flags": [
+        "歌词与识别文本匹配不足，需核对时间轴",
+        "至少一个词概率低于0.5；仅作筛查，并非准确率"
+      ]
+    },
+    {
+      "script_line": 43,
+      "text_from_script": "天都帮你去躲 躲开不见我",
+      "mapped_fraction": 1.0,
+      "exact_match_fraction": 0.7272727272727273,
+      "ear_checked": false,
+      "start": 159.94,
+      "end": 165.84,
+      "min_word_probability": 0.1801728904247284,
+      "whisper_correspondence": "天都望你去躲躲开发现我",
+      "review_flags": [
+        "至少一个词概率低于0.5；仅作筛查，并非准确率"
+      ]
+    }
+  ]
+}

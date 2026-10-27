@@ -1,0 +1,62 @@
+# Local dependency environments and caches
+node_modules/
+.conda/
+.cache/
+.hyperframes/
+.thumbnails/
+.waveform-cache/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Secrets stay outside source control (credential.ps1 is source code)
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.dpapi
+credentials.json
+auth.json
+
+# Private letter and compiled copies containing its text
+/xin.md
+/ending-letter.json
+/mv/letter-data.js
+/mv/assets/full-data.js
+/review/letter-layout.json
+
+# Machine/session state, backups and disposable test projects
+/workflow/workbench/
+/workflow/history/
+/workflow/.workbench-tests/
+/workflow/state.json
+/workflow/stages/workbench-real-smoke-2026-10-27T14-02-27-973Z/
+/workflow/stages/workbench-real-smoke-2026-10-27T14-02-42-050Z/
+*.log
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+
+# Original media and video exports are kept locally
+*.mp4
+*.mov
+*.webm
+*.avi
+*.mkv
+*.flac
+*.mp3
+*.wav
+*.m4a
+*.aac
+*.ogg
+
+# Local Windows font; prepare_full_mv.py copies it from Windows
+/mv/assets/msyh.ttc
+
+# Repeated review frames; keep storyboard and delivery contact sheets
+/review/**/*.png
+/review/**/*.jpg
+!/review/storyboard-page-*.png

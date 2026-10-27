@@ -1,0 +1,26 @@
+{
+  "python": "3.11.17 | packaged by conda-forge | (main, Oct 13 2026, 16:36:10) [MSC v.1944 64 bit (AMD64)]",
+  "executable": "D:\\Pyprojection\\MVforCL\\shimianmaifu\\.conda\\mv\\python.exe",
+  "packages": {
+    "openai-whisper": "20250625",
+    "torch": "2.14.1",
+    "librosa": "0.11.0",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "soundfile": "0.13.1",
+    "Pillow": "12.3.0",
+    "matplotlib": "3.11.2"
+  },
+  "pip_check": "No broken requirements found",
+  "ffmpeg_version": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers",
+  "whisper_model": {
+    "name": "small",
+    "exists": true,
+    "validation": "Loaded successfully by Whisper; SHA256 checked by its loader"
+  },
+  "cuda": false,
+  "puppeteer": "not installed; not required for audio analysis",
+  "scope": "audio analysis environment, not video render readiness",
+  "ffprobe_version": "ffprobe 9.0.2",
+  "status": "Audio analysis ready; CPU inference; video preview dependencies pending"
+}

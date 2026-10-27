@@ -1,0 +1,65 @@
+{
+  "status": "three static studies delivered; waiting for user choice",
+  "image_generation_used": false,
+  "images": {
+    "pixel": {
+      "file": "pixel.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "rgb_stddev": [
+        39.54661856321818,
+        35.531397989039995,
+        37.84986359227088
+      ],
+      "sha256": "75683b485a12d13fec6fdbcd4e85387370c5d7b6e3a1dae2b1ec85281d3dab66",
+      "visually_inspected": true,
+      "actual_colors": 28,
+      "native_size": [
+        320,
+        180
+      ],
+      "integer_scale": 6,
+      "nearest_neighbor_verified": true
+    },
+    "collage": {
+      "file": "collage.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "rgb_stddev": [
+        34.654814649474105,
+        31.505899270796256,
+        35.28109063645934
+      ],
+      "sha256": "4d3fbea94e0016140ac7b882e7487a19b39b40623eaaddf9f7cdb84ef62a8642",
+      "visually_inspected": true
+    },
+    "crayon": {
+      "file": "crayon.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "rgb_stddev": [
+        39.224986084110604,
+        38.52423301088957,
+        43.63489249737966
+      ],
+      "sha256": "32f4cde0f4cad5a15214f35ed7e41870a9c5342f482f9bd1406b73c884589378",
+      "visually_inspected": true
+    }
+  },
+  "libraries": {
+    "p5.brush.js": {
+      "bytes": 71792,
+      "sha256": "41c25108c69a8eb1cca500d68f3603593e33b53e90a773fc024a6cff461fc31a"
+    },
+    "p5.min.js": {
+      "bytes": 990372,
+      "sha256": "3f8a0c739bd3c6350e239ff7187d38656ed2247e30a2b8084fd16a91e6e843ac"
+    }
+  }
+}

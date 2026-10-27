@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>READY pixel</title>
+<style>html,body{margin:0;padding:0;width:1920px;height:1080px;overflow:hidden;background:#f3e9d3}canvas{position:absolute;top:0;left:0;display:block}#out{z-index:5}</style>
+<script src="pixel.js"></script></head><body data-ready="true"><canvas id="out" width="1920" height="1080"></canvas>
+<script src="shared.js"></script>
+<script>
+const STYLE=new URLSearchParams(location.search).get('style')||'pixel';
+window.sceneReady=new Promise(async(resolve,reject)=>{
+ const load=src=>new Promise((ok,no)=>{let s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=()=>no(new Error('Cannot load '+src));document.head.append(s)});
+ try{
+  if(STYLE==='crayon'){await load('vendor/p5.min.js');await load('vendor/p5.brush.js')}
+  await load(STYLE+'.js');await window.drawStudy(0);document.title='READY '+STYLE;document.body.dataset.ready='true';resolve(true);
+ }catch(e){document.title='ERROR '+e.message;document.body.dataset.error=e.stack;console.error(e);reject(e)}
+});
+window.renderAt=async t=>{await window.sceneReady;await window.drawStudy(t);return document.querySelector('#out').toDataURL('image/png')};
+</script>
+</body></html>

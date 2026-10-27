@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-27T12:06:57.566Z",
+  "result": "passed",
+  "checks": [
+    "/ HTTP 200",
+    "/app.js HTTP 200",
+    "/style.css HTTP 200",
+    "实际工程：6 张卡片，4 个 Skill",
+    "歌曲 prompt 下载与 6 张卡内容一致",
+    "缺少页面 token 的写入被拒绝",
+    "未填写 Key 时正确提示，不启动制作",
+    "本地工具完整读取四类真实 Skill 入口及资源目录",
+    "本地 Python 脚本工具正常，中文输出与环境可用",
+    "短测前后卡片、聊天和任务状态未变"
+  ],
+  "credentialConfigured": false,
+  "realAPI": "not tested: no real credential used",
+  "browserVisual": "not tested: browser control unavailable"
+}

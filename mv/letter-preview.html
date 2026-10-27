@@ -1,0 +1,15 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>片尾信件预览</title>
+<style>*{box-sizing:border-box}body{margin:0;background:#344d56;color:#fff9e9;font:16px sans-serif}canvas{width:100%;display:block}#controls{padding:14px;display:flex;gap:15px;align-items:center}input{flex:1}button{padding:8px 20px}</style></head>
+<body><canvas id="scene" width="1920" height="1080"></canvas><div id="controls"><button id="play">播放信件</button><input id="seek" type="range" step=".033333"><span id="clock"></span></div>
+<audio id="song" src="../song.flac"></audio>
+<script src="../character.js"></script><script src="../sketches/paper.js"></script><script src="../sketches/scenes.js"></script><script src="../sketches/revisions.js"></script><script src="letter-data.js"></script><script src="letter.js"></script>
+<script>
+const canvas=document.querySelector('canvas'),g=canvas.getContext('2d'),data=LETTER_DATA,l=Letter.layout(g,data),start=data.reveal_start_music_frame/data.fps;
+window.letterLayout=l;window.renderAt=t=>{Letter.draw(g,t,data,l);return canvas.toDataURL('image/png')};window.sceneReady=true;
+const seek=document.querySelector('#seek'),clock=document.querySelector('#clock'),audio=document.querySelector('#song');seek.min=start;seek.max=l.duration;seek.value=start;
+let t=start,playing=false,last=0;function show(v){t=Math.min(l.duration,Math.max(start,v));seek.value=t;clock.textContent=t.toFixed(1)+' / '+l.duration.toFixed(1)+' s';renderAt(t)}
+seek.oninput=()=>{playing=false;audio.pause();show(+seek.value)};
+document.querySelector('#play').onclick=async()=>{playing=!playing;if(playing){if(t>=l.duration)show(start);last=performance.now();if(t<data.audio_end_seconds){audio.currentTime=t;await audio.play()}}else audio.pause()};
+function tick(now){if(playing){show(t+(now-last)/1000);if(t>=l.duration){playing=false;audio.pause()}}last=now;requestAnimationFrame(tick)}
+requestAnimationFrame(tick);show(new URLSearchParams(location.search).has('full')?l.hold_start:start);
+</script></body></html>

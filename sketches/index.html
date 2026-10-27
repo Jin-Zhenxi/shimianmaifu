@@ -1,0 +1,10 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>Keyframe sketches</title>
+<style>html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:#f4ecda}canvas{display:block}</style>
+</head><body><canvas id="c" width="1920" height="1080"></canvas>
+<script src="../character.js"></script><script src="paper.js"></script><script src="scenes.js"></script><script src="revisions.js"></script>
+<script>
+const c=document.querySelector('#c'),g=c.getContext('2d');
+const ids=new URLSearchParams(location.search).get('ids')||'L01';
+window.sceneReady=new Promise(async(resolve,reject)=>{try{const images=[];for(const id of ids.split(',')){SketchScenes.draw(g,id);images.push({id,png:c.toDataURL('image/png')});await new Promise(r=>setTimeout(r,0));}const el=document.createElement('script');el.type='application/json';el.id='artifacts';el.textContent=JSON.stringify(images);document.body.append(el);document.body.dataset.ready='true';document.title='READY sketches';resolve(true)}catch(e){document.body.dataset.error=e.stack;document.title='ERROR '+e.message;reject(e)}});
+window.renderAt=async()=>{await window.sceneReady;return c.toDataURL('image/png')};
+</script></body></html>

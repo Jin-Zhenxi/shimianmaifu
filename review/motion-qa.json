@@ -1,0 +1,158 @@
+{
+  "stage": "browser_motion_preview",
+  "duration": 15.233333333333333,
+  "frames": 457,
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "source_start": 154.26666666666668,
+  "source_end": 169.5,
+  "deterministic_seek": true,
+  "runtime_errors": [],
+  "frame_samples": [
+    {
+      "time": 0,
+      "file": "review/fate-00.png",
+      "scene": {
+        "stage": "L41",
+        "t": 154.2,
+        "closed": 0,
+        "femaleX": 247,
+        "maleLower": 0
+      }
+    },
+    {
+      "time": 0.8,
+      "file": "review/fate-01.png",
+      "scene": {
+        "stage": "L41",
+        "t": 155,
+        "closed": 0,
+        "femaleX": 250.62288946468175,
+        "maleLower": 0
+      }
+    },
+    {
+      "time": 2.4,
+      "file": "review/fate-02.png",
+      "scene": {
+        "stage": "L41",
+        "t": 156.6,
+        "closed": 0,
+        "femaleX": 275.71174787041235,
+        "maleLower": 0
+      }
+    },
+    {
+      "time": 3.5,
+      "file": "review/fate-03.png",
+      "scene": {
+        "stage": "L42",
+        "t": 157.7,
+        "closed": 0.8737997256515562,
+        "femaleX": 297.3060170366979,
+        "maleLower": 0
+      }
+    },
+    {
+      "time": 4.5,
+      "file": "review/fate-04.png",
+      "scene": {
+        "stage": "L42",
+        "t": 158.7,
+        "closed": 1,
+        "femaleX": 312.90424901353083,
+        "maleLower": 0
+      }
+    },
+    {
+      "time": 5.65,
+      "file": "review/fate-05.png",
+      "scene": {
+        "stage": "L42",
+        "t": 159.9,
+        "closed": 1,
+        "femaleX": 319,
+        "maleLower": 0
+      }
+    },
+    {
+      "time": 6.5,
+      "file": "review/fate-06.png",
+      "scene": {
+        "stage": "L43",
+        "t": 160.7,
+        "closed": 0.6102982268963189,
+        "femaleX": 319,
+        "maleLower": 0
+      }
+    },
+    {
+      "time": 7.4,
+      "file": "review/fate-07.png",
+      "scene": {
+        "stage": "L43",
+        "t": 161.6,
+        "closed": 0.015648021134991752,
+        "femaleX": 319,
+        "maleLower": 0
+      }
+    },
+    {
+      "time": 9,
+      "file": "review/fate-08.png",
+      "scene": {
+        "stage": "L43",
+        "t": 163.2,
+        "closed": 0,
+        "femaleX": 319,
+        "maleLower": 0
+      }
+    },
+    {
+      "time": 11,
+      "file": "review/fate-09.png",
+      "scene": {
+        "stage": "E1",
+        "t": 165.2,
+        "closed": 0,
+        "femaleX": 319,
+        "maleLower": 0.17540740740742297
+      }
+    },
+    {
+      "time": 13,
+      "file": "review/fate-10.png",
+      "scene": {
+        "stage": "E1",
+        "t": 167.2,
+        "closed": 0,
+        "femaleX": 319,
+        "maleLower": 1
+      }
+    },
+    {
+      "time": 15.2,
+      "file": "review/fate-11.png",
+      "scene": {
+        "stage": "E1",
+        "t": 169.4,
+        "closed": 0,
+        "femaleX": 319,
+        "maleLower": 1
+      }
+    }
+  ],
+  "studio_http_status": 200,
+  "mp4_exported": false,
+  "export_blocker": "HyperFrames Chrome --version probe exits 21 on this host; browser drawing and interactive preview work.",
+  "contact_sheet_visually_inspected": true,
+  "canonical_character_copy_matches": true,
+  "hyperframes_check": {
+    "ok": true,
+    "runtime_errors": 0,
+    "craft_samples": 123,
+    "contrast_DOM_text_checks": 0,
+    "note": "Canvas text reviewed visually; full-bleed warning explicitly marked intentional."
+  }
+}

@@ -1,0 +1,30 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>Lyric expressions and actions</title>
+<style>html,body{margin:0;width:3200px;height:2160px;overflow:hidden;background:#f4ecda}canvas{display:block}</style>
+</head><body><canvas id="sheet" width="3200" height="2160"></canvas><script src="character.js"></script><script>
+'use strict';
+const g=document.querySelector('#sheet').getContext('2d');
+const C={paper:'#f4ecda',card:'#fbf6e9',ink:'#48554a',muted:'#8b8975',line:'#d8c8a8'};
+const font='"Microsoft YaHei","Noto Sans CJK SC",sans-serif';
+function text(s,x,y,size=28,color=C.ink,weight=400){g.fillStyle=color;g.font=`${weight} ${size}px ${font}`;g.fillText(s,x,y)}
+function card(x,y,w,h){g.save();g.shadowColor='rgba(105,80,43,.10)';g.shadowBlur=15;g.shadowOffsetY=6;g.fillStyle=C.card;g.beginPath();g.roundRect(x,y,w,h,12);g.fill();g.restore()}
+function draw(variant,x,y,size,options){return Character.draw(g,{variant,x,y,size,paperJitter:false,t:.3,...options})}
+g.fillStyle=C.paper;g.fillRect(0,0,3200,2160);
+text('歌词补充表  /  情绪与动作',104,113,62,C.ink,600);
+text('从原歌词中的寻找、等候、擦肩与悔意补充；全部由同一个 character.js 绘制。',108,174,27,C.muted);
+const expressions=[['hopeful','期待','盼望再次相见'],['worried','焦急','迟到、寻找、处处受阻'],['regretful','懊悔','后悔当初放过对方'],['surprised','惊讶','偶然看见／花火瞬间的可选反应']];
+expressions.forEach(([expression,label,why],i)=>{const x=100+i*760;card(x,230,720,510);text(label+'  /  '+expression.toUpperCase(),x+36,292,30,C.ink,600);text(why,x+36,340,23,C.muted);draw('male',x+208,644,165,{expression});draw('female',x+516,644,165,{expression});text('男主',x+172,700,23,C.muted);text('女主',x+480,700,23,C.muted)});
+text('新增的角色动作',106,832,40,C.ink,600);
+text('基础动作库已保留：走 / 跳 / 拥抱 / 手持道具',1830,832,27,C.muted);
+const actions=[
+ ['search','寻找／巡逻','目光左右扫视，抬钳张望','hopeful'],
+ ['wait','等候','钳子收近身体，停步守候','hopeful'],
+ ['lookback','回望／察觉错过','身体停下，视线转向另一侧','sad'],
+ ['hurry','赶路','短脚加快交替，赶向地铁或电梯','worried'],
+ ['post','寄信','伸钳递出信件，道具跟随钳端','shy'],
+ ['reach','伸钳挽留','向离开的方向伸钳，仍留一段距离','regretful']
+];
+actions.forEach(([action,label,why,expression],i)=>{const x=100+(i%3)*1020,y=885+Math.floor(i/3)*535;card(x,y,960,490);text(label+'  /  '+action.toUpperCase(),x+38,y+65,30,C.ink,600);text(why,x+38,y+111,24,C.muted);draw('male',x+480,y+411,230,{action,expression,u:action==='hurry'?.2:.3,t:.3});});
+text('角色模块负责肢体；地铁、电梯、邮筒、展厅、花火与擦肩路径由后续场景负责。',108,2048,27,C.ink);
+text('拥抱与短暂释然只作为可选／想象动作，不把原歌词擅自改写成复合结局。所有造型仍待确认。',108,2102,25,C.muted);
+document.body.dataset.ready='true';document.title='READY lyric character sheet';window.sceneReady=true;
+</script></body></html>

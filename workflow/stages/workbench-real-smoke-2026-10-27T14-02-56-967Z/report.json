@@ -1,0 +1,44 @@
+{
+  "at": "2026-10-27T14:02:56.968Z",
+  "result": "passed",
+  "model": "deepseek-flash",
+  "checks": [
+    "Real server assets, six cards and four project Skills",
+    "Temporary credential configured in backend memory only",
+    "Real DeepSeek chat tool call, precise local edit and prompt persistence",
+    "Real model loads multiple Skills, runs local Python and writes a verified artifact",
+    "Inventory automatically advances to analysis; all later stages remain pending",
+    "Missing outline prevents subsequent production",
+    "Produced report is downloadable through the real artifact route",
+    "Backend shutdown clears temporary credential",
+    "Restart restores card state but does not restore a temporary credential",
+    "Disposable project files contain no supplied credential"
+  ],
+  "apiRequests": 8,
+  "totalTokens": 95412,
+  "toolCalls": [
+    "finish_revision",
+    "read_skill",
+    "list_files",
+    "run_script",
+    "list_files",
+    "list_files",
+    "list_files",
+    "list_files",
+    "list_files",
+    "read_file",
+    "read_file",
+    "write_file",
+    "finish_stage"
+  ],
+  "scope": "isolated inventory only; no audio/video rendering",
+  "browserVisual": "not tested",
+  "usedSkills": [
+    "music-mv",
+    "song-video-director"
+  ],
+  "inventorySummary": "已完成隔离 smoke 项目盘点：完整读取 song-video-director Skill，运行 workflow_runner.py status（退出码 0，六阶段全部 remaining），并写出不超过 300 字的盘点记录 workflow/stages/smoke-inventory.md。结论：大纲为空、音频/歌词/角色/分镜等成果不在当前隔离目录，需用户补充大纲后才能进入 analysis。未制作、未分析、未渲染。",
+  "credentialCleared": true,
+  "originalProjectUnchanged": true,
+  "disposableProjectRemoved": true
+}

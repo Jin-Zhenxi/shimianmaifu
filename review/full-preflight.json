@@ -1,0 +1,193 @@
+{
+  "duration": 310.3,
+  "music_keyframes": 48,
+  "runtime_errors": [],
+  "deterministic_seek": true,
+  "final_reading_hold_frozen": true,
+  "actor_boundary_differences": [
+    {
+      "index": 1,
+      "max": 0
+    },
+    {
+      "index": 2,
+      "max": 0
+    },
+    {
+      "index": 3,
+      "max": 0
+    },
+    {
+      "index": 4,
+      "max": 0
+    },
+    {
+      "index": 5,
+      "max": 0
+    },
+    {
+      "index": 6,
+      "max": 0
+    },
+    {
+      "index": 7,
+      "max": 0
+    },
+    {
+      "index": 8,
+      "max": 0
+    },
+    {
+      "index": 9,
+      "max": 0
+    },
+    {
+      "index": 10,
+      "max": 0
+    },
+    {
+      "index": 11,
+      "max": 0
+    },
+    {
+      "index": 12,
+      "max": 0
+    },
+    {
+      "index": 13,
+      "max": 0
+    },
+    {
+      "index": 14,
+      "max": 0
+    },
+    {
+      "index": 15,
+      "max": 0
+    },
+    {
+      "index": 16,
+      "max": 0
+    },
+    {
+      "index": 17,
+      "max": 0
+    },
+    {
+      "index": 18,
+      "max": 0
+    },
+    {
+      "index": 19,
+      "max": 0
+    },
+    {
+      "index": 20,
+      "max": 0
+    },
+    {
+      "index": 21,
+      "max": 0
+    },
+    {
+      "index": 22,
+      "max": 0
+    },
+    {
+      "index": 23,
+      "max": 0
+    },
+    {
+      "index": 24,
+      "max": 0.006577999999990425
+    },
+    {
+      "index": 25,
+      "max": 0
+    },
+    {
+      "index": 26,
+      "max": 0
+    },
+    {
+      "index": 27,
+      "max": 0
+    },
+    {
+      "index": 28,
+      "max": 0
+    },
+    {
+      "index": 29,
+      "max": 0
+    },
+    {
+      "index": 30,
+      "max": 0
+    },
+    {
+      "index": 31,
+      "max": 0
+    },
+    {
+      "index": 32,
+      "max": 0
+    },
+    {
+      "index": 33,
+      "max": 0
+    },
+    {
+      "index": 34,
+      "max": 0
+    },
+    {
+      "index": 35,
+      "max": 0
+    },
+    {
+      "index": 36,
+      "max": 0
+    },
+    {
+      "index": 37,
+      "max": 0
+    },
+    {
+      "index": 38,
+      "max": 0
+    },
+    {
+      "index": 39,
+      "max": 0
+    },
+    {
+      "index": 40,
+      "max": 0
+    },
+    {
+      "index": 41,
+      "max": 0
+    },
+    {
+      "index": 42,
+      "max": 0
+    },
+    {
+      "index": 43,
+      "max": 0
+    },
+    {
+      "index": 44,
+      "max": 0
+    },
+    {
+      "index": 45,
+      "max": 0
+    },
+    {
+      "index": 46,
+      "max": 0
+    }
+  ]
+}

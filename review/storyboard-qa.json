@@ -1,0 +1,31 @@
+{
+  "stage": "static_keyframes_approved_by_user",
+  "images": 52,
+  "size": [
+    1920,
+    1080
+  ],
+  "all_image_hashes_match": true,
+  "source_srt_unchanged": true,
+  "contact_pages_visually_inspected": 3,
+  "character_source": "character.js",
+  "character_source_sha256": "234ed6a158217685b4db07db7d06a67b4964c455855b795a5fca7dd3934b03df",
+  "user_answers_sha256": "829ffc26e8fded989977797b64a9b55ad25409fac29d1cb72da79fef3f6db55c",
+  "letter_user_content_invented": false,
+  "letter_final_hold_seconds": 30,
+  "final_video_duration_locked": false,
+  "scope": "static composition and narrative checks; no continuous animation or HyperFrames video exported",
+  "revision": "v3",
+  "main_keyframes": 49,
+  "search_supplemental_keyframes": 3,
+  "original_cut_frames_unchanged": true,
+  "character_module_unchanged": true,
+  "user_answers_untouched": true,
+  "L23_only_male": true,
+  "cloud_text": "1000天",
+  "cloud_text_shots": [
+    "L39",
+    "L40"
+  ],
+  "night_and_fate_sequence_visually_inspected": true
+}

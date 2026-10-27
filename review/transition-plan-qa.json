@@ -1,0 +1,18 @@
+{
+  "stage": "implemented_in_full_r1_for_review",
+  "adjacent_pairs": 48,
+  "all_pairs_present": true,
+  "srt_and_existing_cut_frames_unchanged": true,
+  "beat_quantization_max_ms": 16.33333333333198,
+  "curve_end_audio_boundary_is_not_a_beat": true,
+  "animation_implemented": true,
+  "continuity_render_verified": false,
+  "letter_reveal_delay_proposed_seconds": 0,
+  "current_letter_config_unchanged": true,
+  "headless_browser": "152.0.7977.30",
+  "headless_browser_version_probe_passed": true,
+  "render_attempted_this_turn": true,
+  "planned_duration_seconds": 310.3,
+  "duration_confirmed_by_user": true,
+  "full_export": "mv-r1.mp4"
+}

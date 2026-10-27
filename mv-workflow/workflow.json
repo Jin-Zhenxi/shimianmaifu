@@ -1,0 +1,14 @@
+﻿{
+  "name": "code-driven-music-video",
+  "version": 1,
+  "outline": "mv-workflow/outline.md",
+  "stages": [
+    {"id":"inventory","reads":["mv-workflow/outline.md","README.md","mv/README.md"],"writes":["workflow/state.json"]},
+    {"id":"analysis","reads":["song.md","song-analysis.json","lyrics.srt"],"writes":["workflow/stages/analysis.md"]},
+    {"id":"story","reads":["storyboard.md","storyboard-timing.json","character-design.md"],"writes":["workflow/stages/story.md","workflow/previews/storyboard.png"]},
+    {"id":"scenes","reads":["mv/assets/full-data.js","mv/full-engine.js","mv/actor-tracks.js"],"writes":["workflow/stages/scenes.md","workflow/previews/scene-samples/"]},
+    {"id":"render","reads":["render-full.ps1","finalize_full_mv.py"],"writes":["mv-rN.mp4"]},
+    {"id":"qa","reads":["preflight_full.mjs","review/rN-qa.json","workflow/previews/scene-samples/"],"writes":["workflow/qa-report.md"]}
+  ],
+  "rules":{"increment_delivery_version":true,"preserve_approved_timeline":true,"make_scene_samples":true,"inspect_rendered_frames":true,"do_not_expose_api_keys":true}
+}
