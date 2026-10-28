@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-28T02:26:54.127Z",
+  "passed": true,
+  "songs": 3,
+  "checks": [
+    "首次打开导入弹窗",
+    "打开文件并自动填写歌名",
+    "无歌词导入",
+    "可选 LRC 导入",
+    "歌曲切换",
+    "移动端无横向溢出",
+    "无浏览器异常",
+    "未启动模型任务"
+  ],
+  "screenshots": [
+    "workbench-song-import-desktop.png",
+    "workbench-song-library-desktop.png",
+    "workbench-song-import-mobile.png"
+  ]
+}

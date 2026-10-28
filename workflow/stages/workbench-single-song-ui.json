@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-28T03:07:32.521Z",
+  "passed": true,
+  "songs": 1,
+  "checks": [
+    "首次打开导入弹窗",
+    "打开文件并自动填写歌名",
+    "无歌词导入",
+    "可选 LRC 替换当前歌曲",
+    "无编号与歌曲切换",
+    "无内部要求和检查编辑框",
+    "无通用聊天区",
+    "原始音乐分析任务",
+    "自主编辑与保存",
+    "移动端无横向溢出",
+    "无浏览器异常",
+    "上传未启动模型任务",
+    "歌词展示、编辑与保存",
+    "未确认时下一步锁定",
+    "确认后下一步解锁",
+    "分镜图片展示",
+    "结果意见触发当前阶段重做，等待再次确认"
+  ],
+  "screenshots": [
+    "workbench-single-song-import-desktop.png",
+    "workbench-single-song-card-desktop.png",
+    "workbench-single-song-card-mobile.png",
+    "workbench-single-song-import-mobile.png",
+    "workbench-lyrics-review-desktop.png",
+    "workbench-story-review-desktop.png"
+  ]
+}

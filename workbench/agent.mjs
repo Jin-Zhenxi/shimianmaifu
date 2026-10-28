@@ -36,13 +36,21 @@ export function applyEdits(card, edits) {
 }
 export async function stageContext(root, manifest, song, card) {
   const stage = manifest.stages.find(s => s.id === card.id);
-  let text = `歌曲：${song.number} ${song.title}\n本次大纲：${song.outline || '（未填写：只允许项目盘点，不制作）'}\n当前卡：${JSON.stringify({id:card.id,...Object.fromEntries(fields.map(f=>[f,card[f]]))})}\n读文件入口：${JSON.stringify(stage.reads)}\n预期产物：${JSON.stringify(stage.writes)}`;
+  let text = `歌曲：${song.title}\n本次大纲：${song.outline || '（未填写：只允许项目盘点，不制作）'}\n当前卡：${JSON.stringify({id:card.id,...Object.fromEntries(fields.map(f=>[f,card[f]]))})}\n读文件入口：${JSON.stringify(stage.reads)}\n预期产物：${JSON.stringify(stage.writes)}`;
   const entries = ['AGENTS.md'];
+  text += `\n用户可编辑的当前卡任务（本次执行依据，优先于内部默认制作要求）：\n${card.content || card.goal}\n这是单首歌工作台，音频、歌词和所有卡片均以当前歌曲为准。WebSearch 是任务需求描述；如果后台没有可用搜索能力，明确报告限制，不编造检索结果。`;
+  if (song.source) {
+    text += `\n本次上传音频（唯一歌曲来源）：${song.source.audio.path}\n歌词辅助文件：${song.source.lyrics?.path || '未上传'}\n这是新歌曲，不得复用其他歌曲的歌词、时长、分析、分镜或确认记录。旧工程脚本可能硬编码旧音轨，必须检查并适配本次音频。各阶段成果优先保存 workflow/stages/${song.id}/，预览保存 workflow/previews/${song.id}/。\n上传并不等于已识别歌词：DeepSeek 在此通过文本 API 工作；使用本地转写/对齐工具处理音频，缺少工具时如实 blocked。上传歌词仅供纠错与对齐，不能假定时间轴准确。\n当前歌曲已有阶段结果：${JSON.stringify(song.cards.filter(c=>c.result).map(c=>({id:c.id,result:c.result})))}`;
+    if (song.source.lyrics) {
+      const content = await fs.readFile(path.join(root,song.source.lyrics.path),'utf8');
+      text += `\n--- 用户辅助歌词（前12000字符，其余使用 read_file）---\n${content.slice(0,12000)}`;
+    }
+  }
   for (const file of entries) {
     const content = await fs.readFile(path.join(root,file),'utf8').catch(()=>null);
     if (content) text += `\n--- ${file} ---\n${content}`;
   }
-  for (const file of stage.reads) {
+  for (const file of song.source ? [] : stage.reads) {
     const content = await fs.readFile(path.join(root,file),'utf8').catch(()=>null);
     if (content) text += `\n--- ${file} [前6000字符；需要其余时 read_file 分页] ---\n${content.slice(0,6000)}`;
   }
@@ -66,6 +74,8 @@ export async function runAgent({root, manifest, song, card, kind, message, vault
     `后台脚本具有本机用户权限，没有操作系统沙箱；仅运行与当前卡相关的受信任脚本。禁止调用 codex 或启动其他 Agent。\n` +
     `模型没有实际听过音频；图像只有 inspect_image 后才算看过。不要把文件存在说成自检通过。终稿使用新的 mv-rN.mp4 文件名，禁止覆盖旧视频。\n` +
     `每次先制作可查看的关键帧/短样片，检查后等待用户确认；对已有明确确认的内容可复用，但不要把新修改视为已确认。\n` +
+    `分镜阶段交付的是可讨论草图，不是成片。生成后必须看图；每个分镜/样片任务最多调用三次 inspect_image，优先查看包含全部镜头的接触表，对应初次检查加两轮复查。达到上限后台只允许 finish_stage。仍有问题就用 needs_review 提交实际草图，在 checks 如实列出未解决问题，交给用户确认，不要无限重画、补文档或扩大范围。收到修改意见时也只改指定内容，两轮内提交新结果等待再次确认。\n` +
+    `局部分镜反馈必须保留未涉及镜头；优先缓存并复用未修改的格子或渲染帧，不要重写共享绘制函数后让其他镜头悄悄变化。提交前对比未涉及镜头是否保持一致，无法保持时在 checks 说明，不能声称其他镜头未改。\n` +
     (revision ? `现在是卡片聊天模式：只回答和局部修改当前卡的 goal/instructions/checks，不能制作、不能写文件。调用 finish_revision，edits 使用字段内唯一原文 find 的精确替换，未涉及内容逐字保留。不涉及修改就 edits=[]。\n`
       : `现在执行当前卡。阶段记录保存 workflow/stages/；预览保存 workflow/previews/；QA 写 workflow/qa-report.md。不要修改 workflow/workbench/ 状态或运行 workflow_runner done。完成用 finish_stage。新预览需用户看时返回 needs_review；缺少条件用 blocked；只有实际成功才 completed。提供真实产物和检查证据，不能只写计划。\n`);
   const messages = [{role:'system',content:system},{role:'user',content:context}];
@@ -74,13 +84,18 @@ export async function runAgent({root, manifest, song, card, kind, message, vault
     for (const entry of card.chat.slice(-12)) messages.push({role:entry.role,content:entry.text});
     // The user message was added to persistent history before this call; avoid duplication.
     if (messages.at(-1).content !== message) messages.push({role:'user',content:message});
-  } else messages.push({role:'user',content:'按当前卡开始制作，先检查上下文与约束。'});
+  } else messages.push({role:'user',content:message ? `用户查看本步骤结果后的修改意见：${message}\n只修改当前阶段，保留未提到的内容，重新提交结果等待确认。已有结果：${JSON.stringify(card.result)}` : '按当前卡开始制作，先检查上下文与约束。'});
   const tools = revision ? [...fileTools, revisionTool] : productionTools;
-  const names = new Set(tools.map(t=>t.function.name));
+  const visualStage = !revision && ['story','scenes'].includes(card.id);
+  let imageInspections = 0;
   let totalTokens = 0;
   for (let round = 0; round < (revision ? 12 : 60); round++) {
     signal.throwIfAborted(); log(`DeepSeek 正在${revision ? '整理修改' : '处理当前阶段'} · 第 ${round + 1} 轮`);
-    const result = await request(vault.key, {model,messages,tools,max_tokens:8192}, signal);
+    const reviewOnly = visualStage && imageInspections >= 3;
+    const roundTools = reviewOnly ? tools.filter(t=>t.function.name==='finish_stage') : tools;
+    if(reviewOnly) messages.push({role:'user',content:'已完成初次图片检查及最多两轮自检。现在停止重绘，只能调用 finish_stage 提交真实图片与未解决问题；使用 needs_review 等待用户确认。不要伪称问题已解决。'});
+    const names = new Set(roundTools.map(t=>t.function.name));
+    const result = await request(vault.key, {model,messages,tools:roundTools,max_tokens:8192}, signal);
     totalTokens += result.usage?.total_tokens || 0;
     const answer = result.choices[0].message;
     // Keep the complete assistant message, including tool call IDs and any reasoning metadata.
@@ -93,7 +108,7 @@ export async function runAgent({root, manifest, song, card, kind, message, vault
       signal.throwIfAborted();
       let output;
       try {
-        if (!names.has(tool.function.name)) throw Error('当前模式没有这个工具');
+        if (!names.has(tool.function.name) || (visualStage && imageInspections>=3 && tool.function.name!=='finish_stage')) throw Error('当前只能提交已有草图等待用户确认，不能继续重绘');
         const args = JSON.parse(tool.function.arguments);
         if (tool.function.name === 'finish_revision') {
           textValue(args.reply); const updated = applyEdits(card,args.edits);
@@ -104,6 +119,7 @@ export async function runAgent({root, manifest, song, card, kind, message, vault
           textValue(args.summary);
           for (const artifact of args.artifacts) if (!(await fs.stat(await local.resolve(artifact))).isFile()) throw Error(`产物不是文件：${artifact}`);
           if (args.status !== 'blocked' && !args.artifacts.length) throw Error('请提供真实的阶段产物');
+          if (card.id === 'analysis' && args.status !== 'blocked' && !args.artifacts.some(a=>/\.srt$/i.test(a))) throw Error('请提供当前歌曲的 lyrics.srt，供用户查看、编辑和确认歌词；无法转写时明确报告 blocked');
           if (['story','scenes'].includes(card.id) && args.status !== 'blocked') {
             if (!args.artifacts.some(a=>/\.(png|jpg|jpeg|webp|mp4|webm)$/i.test(a))) throw Error('请先提供可查看的关键帧或样片');
             if (local.inspected.size === 0) throw Error('请先 inspect_image 检查关键帧，不能凭文件存在宣布通过');
@@ -114,6 +130,7 @@ export async function runAgent({root, manifest, song, card, kind, message, vault
           return {kind,status:args.status,summary:vault.redact(args.summary),artifacts:args.artifacts,checks:args.checks.map(c=>vault.redact(textValue(c,5000))),totalTokens,usedSkills:[...local.loadedSkills]};
         }
         output = await local.call(tool.function.name,args);
+        if (tool.function.name === 'inspect_image' && output.image) imageInspections++;
       } catch (e) { output = {error:vault.redact(e.message)}; }
       messages.push({role:'tool',tool_call_id:tool.id,content:output.image ? [{type:'image_url',image_url:{url:output.image}}] : JSON.stringify(output)});
     }

@@ -2,7 +2,7 @@
 
 ## 交互工作台（推荐入口）
 
-运行 `powershell -NoProfile -ExecutionPolicy Bypass -File .\start-workbench.ps1`，在初始页面填写 DeepSeek API，选择临时或永久保存。工作台上方是可编辑卡片，下方聊天做局部修改；按歌曲编号/名称保存 Markdown prompt，后台运行时显示加载状态，完成后自动下一卡。全部已安装 Skill 均可从能力库启用、按需读取参考文件和脚本。
+运行 `powershell -NoProfile -ExecutionPolicy Bypass -File .\start-workbench.ps1`，先上传当前歌曲、填写歌名，可选上传辅助歌词；在 API 设置中选择临时或永久凭证。每次只制作一首歌，更换歌曲时统一更新所有卡片并重置进度。卡片只展示可自主编辑的任务内容；歌词结果可编辑确认，分镜和样片下可发送修改意见。结果必须查看并确认后，下一步才可启动。歌曲编号和通用聊天区已移除；prompt 按歌曲名保存。全部已安装 Skill 可从能力库启用并按需读取。
 
 该路径直接调用 DeepSeek，**不依赖 Codex**。临时 Key 只保存在后台内存，整首流程完成或服务退出后清除；永久 Key 用 Windows 用户加密保存在项目外。操作和限制见 [workbench/README.md](../workbench/README.md)。
 

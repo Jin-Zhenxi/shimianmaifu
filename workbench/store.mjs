@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import {randomUUID} from 'node:crypto';
+import {cardContent} from './card-content.mjs';
 
 export const fields = ['goal', 'instructions', 'checks'];
 const templates = {
@@ -24,13 +25,13 @@ export async function atomic(file, content) {
 }
 export function safeName(s) {
   const name = String(s).normalize('NFC').replace(/[<>:"/\\|?*\x00-\x1f]/g, '-').replace(/[. ]+$/g, '').trim().slice(0, 75);
-  if (!name || /^(con|prn|aux|nul|com\d|lpt\d)(\.|$)/i.test(name)) throw Error('请输入有效的歌曲编号和名称');
+  if (!name || /^(con|prn|aux|nul|com\d|lpt\d)(\.|$)/i.test(name)) throw Error('请输入有效的歌曲名称');
   return name;
 }
-export function promptPath(song) { return `workflow/prompts/${safeName(song.number)}-${safeName(song.title)}.md`; }
+export function promptPath(song) { return `workflow/prompts/${safeName(song.title)}.md`; }
 export function markdown(song) {
-  return `# ${song.number} · ${song.title}\n\n## 本次大纲\n\n${song.outline || '（等待填写）'}\n\n` + song.cards.map((c, i) =>
-    `## ${String(i + 1).padStart(2, '0')} · ${c.title}\n\n### 目标\n\n${c.goal}\n\n### 制作要求\n\n${c.instructions}\n\n### 完成检查\n\n${c.checks}\n`).join('\n');
+  return `# ${song.title}\n\n${song.source ? `## 歌曲输入\n\n音频：${song.source.audio.path}\n歌词：${song.source.lyrics?.path || '未上传；需由本地识别工具转写并听校'}\n\n` : ''}## 本次大纲\n\n${song.outline || '（等待填写）'}\n\n` + song.cards.map(c =>
+    `## ${c.title}\n\n${c.content || cardContent(c.id,song.source,c.goal)}\n`).join('\n');
 }
 export class Store {
   constructor(root) { this.root = root; this.file = path.join(root, 'workflow/workbench/state.json'); }
@@ -48,6 +49,17 @@ export class Store {
           return {id: s.id, title, goal, instructions, checks, status: 'pending', chat: [], result: null};
         }), jobs: [], updatedAt: new Date().toISOString()}]};
     }
+    // Keep one current song; archive legacy multi-song state before migrating.
+    if (this.state.songs.length > 1) {
+      await atomic(path.join(this.root,`workflow/history/song-sessions/${randomUUID()}.json`),JSON.stringify(this.state,null,2));
+      this.state.songs = [this.state.songs.at(-1)];
+    }
+    this.state.version = 2;
+    for (const song of this.state.songs) for (const card of song.cards) {
+      card.content ??= cardContent(card.id,song.source,card.goal);
+      if (card.id === 'analysis') card.title = '理解音乐';
+    }
+    for (const song of this.state.songs) delete song.number;
     // An old process cannot still own a job after restart. Never silently mark it complete.
     for (const s of this.state.songs) for (const j of s.jobs) if (j.status === 'running') {
       j.status = 'interrupted'; j.error = '后台服务已重启，任务中断。请检查已有文件后重试。';
@@ -56,6 +68,13 @@ export class Store {
     await this.save();
   }
   song(id) { const s = this.state.songs.find(s => s.id === id); if (!s) throw Error('歌曲不存在'); return s; }
+  newSong({id=randomUUID(),title,source}) {
+    return {id,title,source,outline:'',revision:0,active:this.manifest.stages[0].id,
+      cards:this.manifest.stages.map(s=>{
+        const [title,goal,instructions,checks] = templates[s.id] || [s.id,'','',''];
+        return {id:s.id,title:s.id==='analysis'?'理解音乐':title,goal,instructions,checks,content:cardContent(s.id,source,goal),status:'pending',chat:[],result:null};
+      }),jobs:[],updatedAt:new Date().toISOString()};
+  }
   card(song, id) { const c = song.cards.find(c => c.id === id); if (!c) throw Error('卡片不存在'); return c; }
   async save() { await atomic(this.file, JSON.stringify(this.state, null, 2) + '\n'); }
   async export(song) {
@@ -63,14 +82,13 @@ export class Store {
   }
   async update(song, changes) {
     if (changes.revision !== song.revision) throw Error('内容已在其他页面更新，请刷新后再保存');
-    if (changes.number !== undefined) song.number = safeName(changes.number);
     if (changes.title !== undefined) song.title = safeName(changes.title);
     if (changes.outline !== undefined) song.outline = textValue(changes.outline);
-    if (this.state.songs.some(s => s.id !== song.id && promptPath(s) === promptPath(song))) throw Error('已有相同编号和名称的歌曲');
     if (changes.card) {
       const c = this.card(song, changes.card.id);
       if (c.status === 'completed') throw Error('已完成的卡片请先点“重新制作”');
       for (const field of fields) if (field in changes.card) c[field] = textValue(changes.card[field]);
+      if ('content' in changes.card) c.content = textValue(changes.card.content);
     }
     song.revision++; song.updatedAt = new Date().toISOString();
     await this.export(song); await this.save();

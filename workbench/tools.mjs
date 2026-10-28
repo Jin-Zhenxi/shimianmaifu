@@ -72,7 +72,7 @@ export class LocalTools {
     }
     if (name === 'read_file') {
       const file = await this.resolve(args.file); const stat = await fs.stat(file);
-      if (stat.size > 3_000_000 || !/\.(md|txt|json|js|mjs|cjs|ts|tsx|jsx|html|css|py|ps1|srt|csv|toml|xml)$/i.test(file)) throw Error('请选择小于 3MB 的文本文件');
+      if (stat.size > 3_000_000 || !/\.(md|txt|lrc|json|js|mjs|cjs|ts|tsx|jsx|html|css|py|ps1|srt|csv|toml|xml)$/i.test(file)) throw Error('请选择小于 3MB 的文本文件');
       const text = await fs.readFile(file, 'utf8'); const offset = Math.max(0, Number(args.offset) || 0), length = Math.min(30000, Math.max(1, Number(args.length) || 12000));
       return {text:this.redact(text.slice(offset, offset + length)), total:text.length, next:offset + length < text.length ? offset + length : null};
     }

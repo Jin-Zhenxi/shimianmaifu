@@ -1,34 +1,27 @@
-# MV 本地工作台
+﻿# MV 本地工作台
 
-在项目根目录启动：
+启动：`powershell -NoProfile -ExecutionPolicy Bypass -File .\start-workbench.ps1`，或运行 `node workbench/server.mjs` 后打开 http://127.0.0.1:3210 。需要 Node.js 22 或以上。
 
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\start-workbench.ps1
-```
+每次只制作一首歌。首次打开选择本机音频、填写歌名，可选上传 TXT / LRC / SRT 辅助歌词。音频及歌词上传总大小不超过 120MB，歌词不超过 1MB，支持 UTF-8 / GB18030。「更换当前歌曲」会统一更新输入与所有卡片，并重置大纲、结果和进度；旧输入及会话保存到历史目录，不删除已有交付。旧版多歌曲状态迁移时先备份，再取最后一首作为当前歌曲。
 
-或者直接运行 `node workbench/server.mjs`，打开 http://127.0.0.1:3210 。需要 Node.js 22 或以上，不新增 npm 依赖，不需要 Codex 登录或 Codex CLI。
+不显示歌曲编号，不提供歌曲切换。卡片只显示一个「这一步要做什么」任务编辑区，提示可自主编辑。「理解音乐」使用用户提供的角色、Whisper、歌词解读、librosa 和人工确认任务。编辑后的 content 保存到状态和 `workflow/prompts/歌曲名.md`，实际传入模型作为当前任务。内部制作规则与检查约束保留在后台，不在界面提供三个独立编辑区。
 
-首次打开填写 DeepSeek API Key，选择模型和临时/永久模式。Key 只发送给本机后台及固定的 `https://api.deepseek.com`，不会写入 prompt、聊天记录或浏览器存储。凭证保存不代表已验证余额和网络；首次聊天或制作时返回实际连接错误。
+上传和保存不调用模型；点击「开始这一步」后，DeepSeek 通过工具循环驱动本地文件、脚本和媒体工具。每次只执行当前卡。阶段产出后统一等待用户查看并确认，确认后才开启下一步，不自动启动下一步；前置卡未确认时，界面禁用启动按钮，后台也拒绝跳步。
 
-- 临时：只在后台内存保留，当前歌曲全部卡片完成或后台进程退出时清除。刷新和关掉浏览器不会停止后台，也不会清除正在使用的 Key。再次启动后台需要重新填写。
-- 永久：Windows DPAPI 按当前用户加密保存到 `%LOCALAPPDATA%/MVWorkbench/deepseek.dpapi`；下次启动自动读取。流程完成后保留，可在 API 设置中清除。切回临时模式也会删除此前的永久副本。其他系统仅支持临时模式。
+歌词识别结果以文本编辑框展示，可修改并保存；保存歌词不会完成当前卡，仍需点击确认。确认前保存编辑内容，旧歌词自动备份。分镜/样片直接展示图片或视频，结果下方提供修改意见框；发送后实际重新制作当前阶段，不修改任务卡原文，不推进后续阶段，重做后再次等待确认。没有通用卡片聊天区。
 
-上方卡片可直接编辑；下方聊天支持针对原文的局部替换，未涉及字段保持不变。点“保存修改”将当前所有卡片导出为 `workflow/prompts/编号-歌曲名.md`；聊天修改成功后自动保存。开始制作前也会保存修改。编号和名称表示当前项目歌曲，更改后另存对应 prompt，旧文件保留；本版不在同一工程并行混用不同歌曲的音频和画面资产。
+当前 DeepSeek 文本接口不直接听音频。歌曲输入路径和辅助歌词进入任务上下文，Whisper 转写及 librosa 节拍分析由本地工具完成；歌曲理解必须提供 SRT 供确认。WebSearch 是任务需求描述，后台目前有公开页面获取工具，没有通用搜索引擎；缺少搜索、转写等能力时必须如实报告限制，不能编造结果或听校记录。
 
-后台通过 DeepSeek Chat Completions 的 tool calls 驱动本地工具，不经过 Codex。每次只处理当前卡：项目盘点 → 歌曲理解 → 故事分镜 → 场景样片 → 版本渲染 → 成片 QA。成功后自动选择下一卡；新样片需要查看时留在当前卡展示，点击确认后进入下一卡。失败、取消或条件缺失时不前进。重新制作之前的卡会撤销其后各卡的完成状态，保留已有文件。
+API 设置支持临时和永久凭证。临时 Key 仅存在后台内存，整首歌最后一张卡确认完成或后台退出后清除；浏览器刷新不会清除。永久 Key 使用 Windows DPAPI 保存在项目外的 `%LOCALAPPDATA%/MVWorkbench/deepseek.dpapi`，可主动清除。凭证不会写入 prompt、聊天、浏览器存储或仓库；保存凭证不代表已验证余额和网络。
 
-“歌曲与大纲”里可编辑本次大纲、查看 Skill 能力库和启用开关。后台自动发现 `.agents/skills/**/SKILL.md`；新增 Skill 后点击刷新即可。默认自动加载当前阶段相关的主流程、导演和运动设计，模型还可调用 `list_skills`、`read_skill` 加载其他已启用 Skill；参考文档和脚本可以继续读取、运行。Remotion 规范可用，但不会自动替换本工程选定的 HyperFrames。
+后台发现 `.agents/skills/**/SKILL.md`，可在能力库启用或刷新。制作代码工程仍共用，新歌曲任务需检查旧脚本的音轨、时长等，不能直接复用旧歌结果。脚本以本机用户权限运行；终稿使用新的 mv-rN.mp4，不覆盖旧交付。
 
-模型的能力与工具共同决定可完成的工作。DeepSeek Flash 支持 `inspect_image` 的图片检查；当前 Pro 路径只启用文本和工具，不能宣称已看过图片。模型不会实际听音频，机器时间轴和听校限制必须保留。外部资料可以通过 `fetch_page` 读取公开 HTTPS 页面，当前没有通用搜索引擎工具。
+分镜和样片每次任务最多进行三次图片检查（优先使用接触表），之后后台只开放结果提交，停止重绘并等待人工确认；未解决的问题必须如实列出。修改意见应复用未涉及镜头，并检查局部修改是否影响了其他镜头。
 
-工具支持项目文本读取与写入、Python/Node/PowerShell 脚本、FFprobe 和图片检查；工具会检查项目路径并隐藏凭证目录。**脚本以当前用户权限运行，没有操作系统级沙箱**，只对受信任项目及 Skill 使用。已有文本修改前自动备份到 `workflow/history/`；模型必须先做关键帧/短样片、按需停下来确认，并为最终视频使用新版本名。本地后台无法保证任意生成脚本的行为，因此不应让它处理不受信任代码。
+状态：`workflow/workbench/state.json`；上传输入：`workflow/songs/<UUID>/`；历史会话：`workflow/history/song-sessions/`；阶段记录：`workflow/stages/`；预览：`workflow/previews/`；QA：`workflow/qa-report.md`。
 
-状态持久化到 `workflow/workbench/state.json`，包括各卡聊天、任务与实际 Skill 加载记录。刷新页面能恢复；后台重启时将未完成任务标记中断，保留文件供检查和重试。阶段完成同步 `workflow/state.json`，供原命令行脚本查询。阶段记录在 `workflow/stages/<歌曲内部ID>/`，预览在 `workflow/previews/`，QA 在 `workflow/qa-report.md`。
+验证：`npm run test:workbench`；浏览器隔离检查：`node workbench-tests/import-ui-smoke.mjs`。检查使用模拟 Agent，不消耗真实 API；歌词与分镜结果区使用测试产物验证交互，不代表实际完成了歌曲制作。
 
-端口默认 3210，启动脚本支持 `-Port 3211` 和 `-NoBrowser`。服务只监听 127.0.0.1，同源请求与页面随机 token 用于限制浏览器跨站写入，不是供公网部署的服务。
+真实 API 最简 smoke：`node workbench-tests/real-smoke.mjs`（转发至 real-flow-smoke.mjs）。脚本在系统临时目录建立隔离项目，监听 http://127.0.0.1:3213 。关闭上传窗口后，在 API 设置填写临时 Key；保存后自动执行项目盘点和测试字幕两张卡，并验证人工确认、歌词编辑落盘、下载和重启恢复。输入是一秒静音及明确标注的人工测试 SRT，不做真实 ASR、网络乐评检索或 MV 渲染；最多 24 次真实 API 请求。也可用 `--stdin` 从标准输入传入 Key，禁止放在命令行参数。等待凭证最多 10 分钟，结束清除临时 Key 并删除隔离项目，报告和实际产物保存在 workflow/stages/workbench-real-flow-smoke-<时间>/。
 
-运行验证：`npm.cmd run test:workbench`。测试在隔离目录使用假 Key 和模拟模型响应，不消耗真实 API，也不更改歌曲资产；Windows DPAPI 测试仅在内存中往返验证。
-
-可选真实 smoke：`node workbench-tests/real-smoke.mjs` 从标准输入接收一行临时 Key，不接受命令行密钥，也不写入文件。它复制说明和 Skill 到系统临时目录，检查真实聊天局部修改、跨 Skill 加载、Python 工具执行、盘点报告下载和自动切卡，然后停止；最多 8 次真实 API 请求，不渲染歌曲。退出会清除凭证、删除隔离目录，报告保存在 `workflow/stages/workbench-real-smoke-<时间>/`。这项检查会消耗实际 API 用量，不属于默认测试。
-
-协议依据：[DeepSeek Tool Calls](https://api-docs.deepseek.com/guides/tool_calls/)、[Chat Completions](https://api-docs.deepseek.com/api/create-chat-completion/)。
+真实分镜测试：`node workbench-tests/real-story-smoke.mjs`，从不回显的标准输入接收临时 Key。依赖本机 Chrome、项目 `.conda/mv/python.exe` 中的 Pillow 和 Windows 字体，复用已确认镜头测试出图、视觉检查和反馈；不渲染视频。预览及详细 API smoke 输出保留本地，已通过 `.gitignore` 排除，仓库保留脚本和阶段总结。上传歌曲、歌词、运行状态与当前 prompt 同样不提交。

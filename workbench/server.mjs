@@ -8,9 +8,10 @@ import {Vault} from './vault.mjs';
 import {runAgent} from './agent.mjs';
 import {LocalTools} from './tools.mjs';
 import {discoverSkills} from './skills.mjs';
+import {importSong} from './import-song.mjs';
 
 const webRoot = fileURLToPath(new URL('./public/', import.meta.url));
-const MIME = {'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.md':'text/plain; charset=utf-8','.json':'application/json; charset=utf-8','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.webp':'image/webp','.mp4':'video/mp4','.webm':'video/webm'};
+const MIME = {'.mp3':'audio/mpeg','.wav':'audio/wav','.flac':'audio/flac','.m4a':'audio/mp4','.aac':'audio/aac','.ogg':'audio/ogg','.opus':'audio/ogg','.aiff':'audio/aiff','.aif':'audio/aiff','.txt':'text/plain; charset=utf-8','.lrc':'text/plain; charset=utf-8','.srt':'text/plain; charset=utf-8','.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.md':'text/plain; charset=utf-8','.json':'application/json; charset=utf-8','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.webp':'image/webp','.mp4':'video/mp4','.webm':'video/webm'};
 const isRunning = j => j.status === 'running';
 function equal(a,b) { if (typeof a !== 'string' || a.length !== b.length) return false; return timingSafeEqual(Buffer.from(a),Buffer.from(b)); }
 export async function createWorkbench({root = fileURLToPath(new URL('../',import.meta.url)), vault = new Vault(), agent = runAgent} = {}) {
@@ -57,11 +58,19 @@ export async function createWorkbench({root = fileURLToPath(new URL('../',import
           card.status = 'pending'; song.revision++;
           await atomic(path.join(root,`workflow/stages/${song.id}/${Date.now()}-${card.id}-revision.json`), JSON.stringify({before,after:result.updated,edits:result.edits},null,2));
         } else {
-          card.result = result; card.status = result.status === 'needs_review' ? 'review' : result.status === 'blocked' ? 'blocked' : 'completed';
+          card.result = result; card.status = result.status === 'blocked' ? 'blocked' : 'review';
+          card.reviewText = null;
+          if (card.id === 'analysis' && card.status === 'review') {
+            const file = result.artifacts.find(a=>/\.srt$/i.test(a)) || result.artifacts.find(a=>/\.(lrc|txt)$/i.test(a));
+            if (file) {
+              const full = await new LocalTools(root).resolve(file);
+              const stat = await fs.stat(full);
+              if (stat.size <= 1_000_000) card.reviewText = {path:file,text:vault.redact(await fs.readFile(full,'utf8'))};
+            }
+          }
           await atomic(path.join(root,`workflow/stages/${song.id}/${job.id}-${card.id}.md`),
             `# ${card.title}\n\n状态：${result.status}\n\n${result.summary}\n\n## 产物\n\n${result.artifacts.map(a=>`- ${a}`).join('\n')}\n\n## 检查\n\n${result.checks.map(c=>`- ${c}`).join('\n')}\n`);
-          if (result.status === 'completed') await advance(song,card);
-          else song.revision++;
+          song.revision++;
         }
         await store.export(song); await store.save();
       });
@@ -80,6 +89,15 @@ export async function createWorkbench({root = fileURLToPath(new URL('../',import
       if (origin && origin !== `http://${req.headers.host}`) return json(res,{error:'不允许跨域访问'},403);
       const url = new URL(req.url, `http://${req.headers.host}`);
       if (url.pathname === '/api/state' && req.method === 'GET') { await serial; return json(res,snapshot()); }
+      if (url.pathname === '/api/songs/import' && req.method === 'POST') {
+        if (!equal(req.headers['x-workbench-token'],csrf) || !req.headers['content-type']?.startsWith('multipart/form-data;')) return json(res,{error:'页面会话已过期，请刷新'},403);
+        let createdSongId;
+        await transact(async()=>{
+          if (running()) throw Error('后台正在处理任务，请等完成后再添加歌曲');
+          createdSongId = await importSong(req,store,s=>vault.redact(s));
+        });
+        return json(res,{...snapshot(),createdSongId});
+      }
       if (url.pathname.startsWith('/api/') && req.method === 'POST') {
         if (!equal(req.headers['x-workbench-token'],csrf) || !req.headers['content-type']?.startsWith('application/json')) return json(res,{error:'页面会话已过期，请刷新'},403);
         const data = await body(req);
@@ -125,20 +143,32 @@ export async function createWorkbench({root = fileURLToPath(new URL('../',import
             song.active = card.id; song.revision++; await store.save();
             await atomic(path.join(root,'workflow/state.json'),JSON.stringify({completed:song.cards.filter(c=>c.status==='completed').map(c=>c.id),active:song.active},null,2)+'\n');return;
           }
-          if (url.pathname === '/api/approve') {
+          if (['/api/approve','/api/review/save'].includes(url.pathname)) {
             if (card.status !== 'review') throw Error('当前卡没有待确认的制作结果');
+            if (song.cards.slice(0,song.cards.indexOf(card)).some(c=>c.status!=='completed')) throw Error('请先确认前面的步骤');
+            if (card.reviewText) {
+              if (data.revision !== song.revision) throw Error('结果已更新，请刷新后再确认');
+              const text = vault.redact(textValue(data.reviewText,300000));
+              if (!text.trim()) throw Error('歌词不能为空');
+              const file = await new LocalTools(root).resolve(card.reviewText.path,{write:true});
+              await atomic(path.join(root,`workflow/history/${randomUUID()}/lyrics-before-review.txt`),card.reviewText.text);
+              await atomic(file,text);card.reviewText.text=text;
+            }
+            if (url.pathname === '/api/review/save') { song.revision++;await store.export(song);await store.save();return; }
             card.reviewedAt = new Date().toISOString(); await advance(song,card); return;
           }
-          if (!['/api/revise','/api/run'].includes(url.pathname)) throw Error('未知操作');
+          if (!['/api/revise','/api/run','/api/feedback'].includes(url.pathname)) throw Error('未知操作');
           if (!vault.key) throw Error('请先填写 DeepSeek API Key');
           if (card.status === 'completed') throw Error('当前卡已完成，请先重新制作');
           const index = song.cards.indexOf(card);
-          if (url.pathname === '/api/run' && song.cards.slice(0,index).some(c=>c.status !== 'completed')) throw Error('请先完成前面的卡片');
+          if (url.pathname !== '/api/revise' && song.cards.slice(0,index).some(c=>c.status !== 'completed')) throw Error('请先查看并确认前面的步骤');
           if (url.pathname === '/api/run' && card.id !== 'inventory' && !song.outline.trim()) throw Error('本次大纲尚未填写，请先填写并保存');
-          const message = url.pathname === '/api/revise' ? vault.redact(textValue(data.message,8000)).trim() : '';
+          if (url.pathname === '/api/feedback' && (card.status!=='review' || !['story','scenes'].includes(card.id))) throw Error('当前没有可修改的分镜或样片结果');
+          const message = ['/api/revise','/api/feedback'].includes(url.pathname) ? vault.redact(textValue(data.message,8000)).trim() : '';
+          if (url.pathname === '/api/feedback' && !message) throw Error('请填写修改意见');
           if (url.pathname === '/api/revise' && !message) throw Error('请填写修改要求');
           if (message) card.chat.push({role:'user',text:message,at:new Date().toISOString()});
-          const job = {id:randomUUID(),cardId:card.id,kind:message ? 'revise':'produce',status:'running',startedAt:new Date().toISOString(),progress:'正在连接 DeepSeek…',events:[],skills:[]};
+          const job = {id:randomUUID(),cardId:card.id,kind:url.pathname==='/api/revise' ? 'revise':'produce',status:'running',startedAt:new Date().toISOString(),progress:'正在连接 DeepSeek…',events:[],skills:[]};
           song.jobs = [...song.jobs.slice(-19),job]; card.status = 'running'; song.active = card.id;
           await store.export(song); await store.save();
           const controller = new AbortController(); controllers.set(job.id,controller);
@@ -150,7 +180,8 @@ export async function createWorkbench({root = fileURLToPath(new URL('../',import
         const song = store.song(url.searchParams.get('songId'));
         const rel = url.searchParams.get('file');
         const artifacts = song.cards.flatMap(c=>c.result?.artifacts || []);
-        if (rel !== promptPath(song) && !artifacts.includes(rel)) throw Error('该文件未列为工作流产物');
+        const inputs = [song.source?.audio.path,song.source?.lyrics?.path].filter(Boolean);
+        if (rel !== promptPath(song) && !artifacts.includes(rel) && !inputs.includes(rel)) throw Error('该文件未列为工作流产物');
         const tools = new LocalTools(root); const file = await tools.resolve(rel);
         return await serveFile(req,res,file,Boolean(url.searchParams.get('download')));
       }
